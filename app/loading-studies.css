@@ -1,0 +1,63 @@
+.lusion-entrance { background: #000; color: #fff; display: block; }
+.lusion-entrance.exit { animation: lusionReveal .75s cubic-bezier(.72, 0, .18, 1) forwards; }
+.lusion-entrance > strong { position: absolute; bottom: -8%; left: -.8%; font-family: var(--font-body), sans-serif; font-size: clamp(140px, 23vw, 300px); font-weight: 400; line-height: 1; letter-spacing: -.1em; }
+.lusion-stage { background: #f0f0f7; color: #101116; }
+.lusion-arrival { position: absolute; inset: 0; padding: 6% 5% 4%; display: flex; flex-direction: column; justify-content: space-between; }
+.lusion-arrival-header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; font-size: 20px; line-height: 1.15; }
+.lusion-arrival-header > span:first-child { font-size: 25px; letter-spacing: .02em; font-weight: 700; }
+.lusion-arrival-header p { margin: 0; max-width: 330px; }
+.lusion-arrival-header > span:last-child { font: 11px var(--font-mono), monospace; background: #dcdce5; border-radius: 40px; padding: 13px 18px; }
+.lusion-arrival-art { position: absolute; top: 29%; left: 5%; right: 5%; height: 61%; overflow: hidden; border-radius: 17px; background: #101015 url('https://lusion.co/assets/meta/social_sharing.jpg') center / cover; }
+.lusion-arrival > small { position: absolute; bottom: 3%; align-self: center; font: 10px var(--font-mono), monospace; }
+.lusion-loader { position: absolute; inset: 0; z-index: 5; color: #f7f7f7; background: #000; }
+.lusion-loader.revealing { animation: lusionReveal .9s cubic-bezier(.72, 0, .18, 1) forwards; }
+.lusion-load-bar { position: absolute; width: 210px; height: 42px; background: #303030; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.lusion-load-bar span { display: block; height: 100%; background: #f6f6f6; transition: width .06s linear; }
+.lusion-loader > strong { position: absolute; bottom: -8%; left: -.8%; font-family: var(--font-body), sans-serif; font-size: clamp(140px, 23vw, 300px); font-weight: 400; line-height: 1; letter-spacing: -.1em; }
+@keyframes lusionReveal { to { clip-path: inset(0 0 100% 0); } }
+.amaterasu-stage { color: #fff; background: #15244c; }
+.ama-page { position: absolute; inset: 0; background-color: #1c4f66; background-position: center; background-size: cover; }
+.ama-page-1 .ama-page { color: #182f55; background: radial-gradient(circle at 70% 65%, #d9f8fb, #f9fcfc 58%, #e6f1f7); }
+.ama-nav { position: absolute; z-index: 2; top: 5%; left: 4%; right: 4%; display: flex; justify-content: space-between; letter-spacing: .27em; font: 9px var(--font-mono), monospace; }
+.ama-nav span:first-child { margin-left: 38%; }
+.ama-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 4%; text-align: center; }
+.ama-content strong { font-size: clamp(45px, 6vw, 83px); line-height: .98; letter-spacing: -.065em; font-weight: 400; text-shadow: 0 1px 16px #0b2739; }
+.ama-content p { position: absolute; right: 5%; bottom: 14%; max-width: 165px; text-align: left; font-size: 10px; line-height: 1.4; }
+.ama-enter { margin-top: 22px; border-radius: 30px; background: #3948a9; padding: 12px 18px; font: 9px var(--font-mono), monospace; letter-spacing: .1em; }
+.ama-enter:disabled { opacity: .45; }
+.ama-scroll { position: absolute; bottom: 6%; left: 4%; font: 9px var(--font-mono), monospace; letter-spacing: .15em; }
+.ama-aleph { position: absolute; inset: 0; display: grid; place-items: center; }
+.ama-aleph > strong { color: #b8f6f7; font: 400 clamp(180px, 35vw, 540px) Georgia, serif; line-height: .8; opacity: .58; }
+.ama-aleph > div { position: absolute; right: 7%; bottom: 12%; max-width: 210px; font-size: 12px; line-height: 1.4; }
+.ama-aleph small { font: 9px var(--font-mono), monospace; letter-spacing: .15em; }
+.ama-curtain { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+.jealous-stage { background: #050505; color: white; }
+.jealous-list { position: absolute; inset: 0; padding: 5%; transition: transform .9s cubic-bezier(.76, 0, .2, 1), opacity .9s; }
+.jealous-logo { position: absolute; left: 5%; top: 5%; font-size: 24px; line-height: .8; font-weight: 600; }
+.jealous-list > strong { display: block; text-align: center; margin: 5% 0 11%; font-size: clamp(85px, 15vw, 210px); letter-spacing: -.07em; font-weight: 500; }
+.jealous-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; height: 70%; }
+.jealous-grid > div { background-size: cover; background-position: center; }
+.jealous-grid > div:nth-child(1),.jealous-film { background-image: url('https://showcase.studiothis.co.uk/jealous/wp-content/uploads/2024/06/Screenshot-2024-05-23-at-14.11.11-copy16-9-1024x576.webp'); }
+.jealous-grid > div:nth-child(2) { background-image: url('https://showcase.studiothis.co.uk/jealous/wp-content/uploads/2024/05/thumb-1-1024x576.webp'); }
+.jealous-grid > div:nth-child(3) { background: #202324; }.jealous-grid > div:nth-child(4) { background: #292a2d; }
+.jealous-detail { position: absolute; inset: 0; background: #050505; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px; transform: translateY(105%); transition: transform .9s cubic-bezier(.76, 0, .2, 1); }
+.jealous-detail > span,.jealous-detail > small { font: 11px var(--font-mono), monospace; letter-spacing: .07em; }
+.jealous-film { width: 67%; height: 62%; background-size: cover; background-position: center; }
+.jealous-stage.is-expanded .jealous-list { transform: translateY(-16%) scale(.9); opacity: .45; }
+.jealous-stage.is-expanded .jealous-detail { transform: translateY(0); }
+.ruba-stage { background: #f6f5f2; color: #131313; }
+.ruba-nav { position: absolute; left: 4%; right: 4%; top: 4%; display: flex; justify-content: space-between; font-weight: 600; z-index: 3; }.ruba-nav span:first-child { font-family: var(--font-serif), serif; font-size: 35px; font-style: italic; }
+.ruba-list { position: absolute; inset: 0; }.ruba-list p { position: absolute; left: 66%; top: 22%; width: 28%; font-size: clamp(22px, 2.7vw, 37px); font-weight: 700; line-height: 1.1; }.ruba-list > span { position: absolute; left: 12%; top: 74%; font-size: 11px; }
+.ruba-photo { position: absolute; left: 12%; top: 19%; width: 47%; height: 51%; background: url('https://www.datocms-assets.com/121373/1786946855-ch_2026_winterthur-sanierung-altes-pfarrhaus_zimmerarbeiten_holzbau_aussenaufnahme-2.jpg') center / cover; transition: left .95s cubic-bezier(.2,.7,.15,1), top .95s cubic-bezier(.2,.7,.15,1), width .95s cubic-bezier(.2,.7,.15,1), height .95s cubic-bezier(.2,.7,.15,1), filter .95s; z-index: 1; }
+.ruba-detail { position: absolute; inset: 0; padding: 13% 6%; display: flex; flex-direction: column; gap: 20px; color: #fff; opacity: 0; transition: opacity .5s .45s; z-index: 2; pointer-events: none; }
+.ruba-detail small { font-size: 13px; }.ruba-detail strong { font-size: clamp(52px, 7vw, 100px); line-height: 1; letter-spacing: -.06em; }.ruba-detail span { font-size: 20px; }
+.ruba-stage.is-expanded .ruba-photo { left: 0; top: 0; width: 100%; height: 100%; filter: brightness(.55); }
+.ruba-stage.is-expanded .ruba-detail { opacity: 1; }.ruba-stage.is-expanded .ruba-list { opacity: 0; }
+@media(max-width:700px) {
+  .lusion-arrival-header p { font-size: 13px; }.lusion-arrival-header > span:first-child { font-size: 18px; }.lusion-arrival-header > span:last-child { display: none; }
+  .lusion-arrival-art { top: 35%; height: 51%; }.lusion-loader > strong { bottom: 1%; font-size: 34vw; }
+  .ama-content strong { font-size: 50px; }.ama-content p { right: 6%; bottom: 14%; max-width: 130px; font-size: 8px; }
+  .jealous-list > strong { margin-top: 28%; }.jealous-grid { gap: 10px; }.jealous-film { width: 82%; height: 45%; }
+  .ruba-list p { font-size: 22px; left: 52%; top: 27%; width: 44%; }.ruba-photo { left: 5%; top: 24%; width: 43%; height: 43%; }.ruba-list > span { left: 5%; top: 71%; }.ruba-detail { padding-top: 25%; }.ruba-detail strong { font-size: 50px; }
+}
+@media(prefers-reduced-motion:reduce) { .lusion-loader.revealing { animation-duration: .01ms; } }

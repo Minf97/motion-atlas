@@ -1,0 +1,29 @@
+.lenis-demo { background: #030303; color: #f0a1a8; }
+.lenis-nav { display: flex; align-items: center; justify-content: space-between; height: 55px; padding: 0 3%; color: #fff; font: 10px var(--font-body), sans-serif; font-weight: 800; letter-spacing: -.02em; }
+.lenis-nav strong { display: grid; place-items: center; width: 37px; height: 37px; background: #f0a1a8; color: black; font-size: 29px; font-family: Georgia, serif; }
+.lenis-hero { min-height: 88vh; position: relative; padding: 2% 3% 4%; background: radial-gradient(ellipse at 50% 100%, #4b1c25 0, #080607 33%, #030303 64%); overflow: hidden; }
+.lenis-wordmark { display: block; width: 100%; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(150px, 24vw, 410px); font-weight: 900; font-style: italic; letter-spacing: -.12em; line-height: .95; white-space: nowrap; transform: scaleX(1.15); transform-origin: left; }
+.lenis-subtitle { display: block; color: #fff; text-align: right; font-size: clamp(35px, 5vw, 80px); font-weight: 900; font-style: italic; letter-spacing: -.055em; line-height: 1; }
+.lenis-hero-bottom { position: absolute; left: 3%; right: 3%; bottom: 5%; display: flex; gap: 6%; align-items: end; color: #fff; }
+.lenis-hero-bottom > span { font-size: 18px; font-weight: 900; line-height: .95; }
+.lenis-hero-bottom p { font-size: 11px; line-height: 1.25; font-weight: 800; margin: 0 auto 0 0; }
+.lenis-demo [data-slot="button"] { background: #f0a1a8; color: #080808; border: 0; border-radius: 3px; font-weight: 800; padding: 18px 26px; }
+.lenis-demo [data-slot="button"]:hover { background: #ffc3c8; }
+.lenis-switch { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 12px 3%; color: #fff; background: #090909e8; backdrop-filter: blur(15px); font: 10px var(--font-mono), monospace; letter-spacing: .08em; }
+.lenis-switch > div { display: flex; gap: 5px; }
+.lenis-switch [aria-pressed="false"] { background: #282828; color: #fff; }
+.lenis-chapter { min-height: 95vh; display: flex; align-items: start; flex-direction: column; justify-content: center; padding: 10% 8%; }
+.lenis-chapter > span { font: 11px var(--font-mono), monospace; letter-spacing: .1em; }
+.lenis-chapter strong { display: block; font-size: clamp(78px, 11vw, 170px); letter-spacing: -.08em; line-height: .85; margin: 6% 0 4%; }
+.lenis-chapter em { font-family: var(--font-serif), serif; font-weight: 400; }
+.lenis-chapter p { max-width: 310px; line-height: 1.7; font-size: 13px; }
+.lenis-chapter-two { background: #f0a1a8; color: #090909; }
+.lenis-chapter-two [data-slot="button"] { background: #090909; color: #f0a1a8; }
+.lenis-chapter-three { background: #080808; }
+@media (max-width: 700px) {
+  .lenis-nav { font-size: 8px; }.lenis-nav span:first-child { max-width: 90px; }.lenis-nav span:last-child { max-width: 100px; text-align: right; }
+  .lenis-hero { min-height: 75vh; padding-top: 20%; }.lenis-wordmark { font-size: 25vw; }.lenis-subtitle { font-size: 9vw; }
+  .lenis-hero-bottom { display: block; }.lenis-hero-bottom p { margin: 14px 0 25px; }
+  .lenis-switch > span { display: none; }.lenis-switch { justify-content: center; }
+  .lenis-chapter strong { font-size: 20vw; }
+}

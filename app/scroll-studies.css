@@ -1,0 +1,16 @@
+.lusion-trigger { background: #f0f0f7; color: #050505; min-height: 175vh; padding: 35px 5% 90px; }
+.lusion-trigger-nav { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 5; padding: 8px 0 55px; }
+.lusion-trigger-nav strong { font-size: 24px; letter-spacing: .02em; }.lusion-trigger-nav span { font: 11px var(--font-mono), monospace; }
+.lusion-trigger-intro { display: grid; grid-template-columns: 1fr 230px; gap: 28px; align-items: end; margin: 70px 0 50px; }
+.lusion-trigger-intro h2 { font-size: clamp(70px, 10vw, 145px); font-weight: 400; letter-spacing: -.07em; line-height: 1; margin: 0; }
+.lusion-trigger-intro p { font: 11px var(--font-mono), monospace; line-height: 1.5; margin: 0 0 13px; }
+.lusion-trigger-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 70px 28px; }
+.lusion-trigger-project { opacity: 0; transform: translateY(80px); transition: transform 1.1s cubic-bezier(.2,.75,.2,1), opacity .9s ease; }
+.lusion-trigger-project:nth-child(even) { transition-delay: .16s; }
+.lusion-trigger-project.is-visible { opacity: 1; transform: translateY(0); }
+.lusion-trigger-image { width: 100%; aspect-ratio: 1.33; background-size: cover; background-position: center; border-radius: 20px; overflow: hidden; transition: transform .7s cubic-bezier(.2,.75,.2,1); }
+.lusion-trigger-project:hover .lusion-trigger-image { transform: scale(.97); }
+.lusion-trigger-meta { display: flex; justify-content: space-between; gap: 18px; align-items: end; padding: 13px 1px; }
+.lusion-trigger-meta strong { font-size: clamp(24px, 3vw, 43px); letter-spacing: -.07em; font-weight: 500; }.lusion-trigger-meta span { max-width: 180px; font: 9px var(--font-mono), monospace; text-align: right; line-height: 1.45; }
+@media(max-width:700px) { .lusion-trigger { padding: 22px 5% 60px; }.lusion-trigger-intro { grid-template-columns: 1fr; margin: 40px 0; }.lusion-trigger-intro h2 { font-size: 65px; }.lusion-trigger-grid { grid-template-columns: 1fr; gap: 30px; }.lusion-trigger-nav { padding-bottom: 30px; }.lusion-trigger-nav strong { font-size: 18px; }.lusion-trigger-nav span { font-size: 9px; } }
+@media(prefers-reduced-motion:reduce) { .lusion-trigger-project { transition-duration: .01ms; } }
