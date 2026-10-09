@@ -6,7 +6,7 @@ import "./loading-studies.css"
 import "./scroll-studies.css"
 import "./driven-studies.css"
 import "./smooth-studies.css"
-import { EntranceSplash } from "@/components/entrance-splash"
+import "./portfolio.css"
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -17,8 +17,8 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--fon
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: "italic", variable: "--font-serif" })
 
 export const metadata = {
-  title: "Motion Atlas — Frontend Motion Studies",
-  description: "一个可交互的前端特效作品集：Loading、页面转场、滚动触发与驱动、Lenis 缓动滚动。",
+  title: "胥昱全 — 前端开发与交互作品集",
+  description: "胥昱全的前端作品集，收录 Loading、页面转场、滚动交互与 Lenis 缓动案例。",
 }
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className={cn(display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
-      <body><EntranceSplash />{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

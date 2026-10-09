@@ -1,0 +1,68 @@
+:root { --ink:#222320; --paper:#faf9f6; --muted:#767873; --line:#dedfda; --lime:#222320; --background:#faf9f6; --foreground:#222320; --primary:#222320; --primary-foreground:#faf9f6; --border:#dedfda; }
+html { scroll-behavior:smooth; }
+body { background:var(--paper); color:var(--ink); font-family:var(--font-body),sans-serif; }
+::selection { background:#d7d9d1; color:var(--ink); }
+.portfolio-page,.resume-page { max-width:1180px; margin:auto; padding:0 44px; }
+.portfolio-header { height:86px; display:flex; align-items:center; justify-content:space-between; gap:24px; border-bottom:1px solid var(--line); }
+.portfolio-name { font-size:15px; font-weight:700; letter-spacing:-.035em; white-space:nowrap; }
+.portfolio-name span { color:var(--muted); font-size:12px; font-weight:400; letter-spacing:0; }
+.portfolio-header nav { display:flex; align-items:center; gap:32px; font-size:13px; }
+.portfolio-header nav a,.portfolio-footer a,.portfolio-intro-bottom a,.resume-links a { display:inline-flex; align-items:center; gap:5px; }
+.portfolio-header svg,.portfolio-footer svg,.portfolio-intro-bottom svg,.resume-links svg { width:14px; height:14px; }
+.portfolio-header a:hover,.portfolio-footer a:hover,.portfolio-intro-bottom a:hover,.resume-links a:hover { color:#777a70; }
+.portfolio-intro { padding:124px 0 108px; }
+.portfolio-overline,.portfolio-work-heading,.portfolio-category-heading>span,.portfolio-case-number,.portfolio-case-title small,.resume-heading>span { color:var(--muted); font-size:11px; letter-spacing:.06em; }
+.portfolio-intro h1 { max-width:850px; margin:27px 0 62px; font-size:clamp(56px,7vw,100px); line-height:1.15; font-weight:520; letter-spacing:-.085em; }
+.portfolio-intro-bottom { display:flex; justify-content:space-between; align-items:end; gap:40px; }
+.portfolio-intro-bottom p { max-width:470px; margin:0; font-size:16px; line-height:1.85; color:#555852; }
+.portfolio-intro-bottom a { flex:none; padding-bottom:5px; border-bottom:1px solid currentColor; font-size:13px; }
+.portfolio-work-heading { display:flex; justify-content:space-between; border-top:1px solid var(--ink); padding:20px 0; }
+.portfolio-category { scroll-margin-top:30px; display:grid; grid-template-columns:280px 1fr; gap:38px; padding:75px 0 105px; border-top:1px solid var(--line); }
+.portfolio-category-heading h2 { margin:22px 0 12px; font-size:clamp(38px,4vw,54px); font-weight:540; letter-spacing:-.065em; line-height:1.1; }
+.portfolio-category-heading p { max-width:220px; color:var(--muted); font-size:13px; line-height:1.65; }
+.portfolio-group + .portfolio-group { margin-top:42px; }
+.portfolio-group h3 { display:flex; gap:12px; align-items:baseline; margin:0 0 10px; font-size:19px; font-weight:580; letter-spacing:-.04em; }
+.portfolio-group h3 small { color:var(--muted); font-size:12px; font-weight:400; letter-spacing:0; }
+.portfolio-case { min-height:91px; display:grid; grid-template-columns:35px minmax(140px,1fr) minmax(190px,1.2fr) 18px; gap:15px; align-items:center; border-top:1px solid var(--line); }
+.portfolio-case:last-child { border-bottom:1px solid var(--line); }
+.portfolio-case-title { display:flex; flex-direction:column; gap:4px; font-size:16px; font-weight:570; }
+.portfolio-case-title small { font-weight:400; }
+.portfolio-case-description { color:var(--muted); font-size:12px; line-height:1.6; }
+.portfolio-case>svg { width:17px; height:17px; transition:transform .2s; }
+.portfolio-case:hover>svg { transform:translate(3px,-3px); }
+.portfolio-case:hover .portfolio-case-title { text-decoration:underline; text-underline-offset:4px; }
+.portfolio-footer { min-height:120px; display:flex; align-items:center; justify-content:space-between; gap:20px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+.portfolio-footer a { color:var(--ink); }
+.portfolio-detail { max-width:1180px; }
+.portfolio-detail .detail-intro { padding:90px 0 52px; }
+.portfolio-detail .section-eyebrow,.portfolio-detail .detail-note>span,.portfolio-detail .next-effect>span { color:var(--muted); }
+.portfolio-detail .detail-intro h1 { font-size:clamp(44px,5vw,70px); font-weight:550; letter-spacing:-.07em; margin:20px 0; }
+.portfolio-detail .detail-intro p,.portfolio-detail .detail-note p { color:#666963; }
+.portfolio-detail .detail-demo { --ink:#10110f; --paper:#e9e9e2; --muted:#9b9d97; --line:#373a35; --lime:#c4f06b; border-color:#dedfda; color:var(--paper); }
+.portfolio-detail .detail-note { border-color:var(--line); }
+.portfolio-detail .next-effect { min-height:160px; }
+.portfolio-detail .next-effect strong { font-size:clamp(30px,4vw,50px); font-weight:560; }
+.resume-content { max-width:720px; margin:0 auto; }
+.resume-heading { padding:105px 0 33px; text-align:center; }
+.resume-heading h1 { margin:22px 0 9px; font-size:clamp(50px,7vw,75px); font-weight:560; letter-spacing:-.07em; }
+.resume-heading p { margin:0; color:var(--muted); font-size:14px; }
+.resume-summary { max-width:600px; margin:28px auto 21px; text-align:center; font-size:15px; line-height:1.95; color:#555852; }
+.resume-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 27px; font-size:12px; }
+.resume-links a { border-bottom:1px solid var(--line); padding-bottom:3px; }
+.resume-section { padding:85px 0 0; }
+.resume-section h2 { margin:0 0 24px; font-size:27px; font-weight:560; letter-spacing:-.05em; }
+.resume-section h2 small { margin-left:10px; color:var(--muted); font-size:12px; font-weight:400; letter-spacing:0; }
+.resume-entry { border-top:1px solid var(--line); padding:23px 0 26px; }
+.resume-entry-title { display:flex; justify-content:space-between; align-items:baseline; gap:20px; }
+.resume-entry-title h3 { margin:0; font-size:17px; font-weight:600; letter-spacing:-.025em; }
+.resume-entry-title time { flex:none; color:var(--muted); font-size:12px; }
+.resume-role { margin:7px 0 12px; color:var(--muted); font-size:12px; }
+.resume-entry ul { margin:0; padding-left:17px; color:#555852; font-size:13px; line-height:1.85; }
+.resume-entry li + li { margin-top:5px; }
+.resume-skills { padding-bottom:110px; }
+.resume-skill { display:grid; grid-template-columns:120px 1fr; gap:20px; border-top:1px solid var(--line); padding:16px 0; }
+.resume-skill h3,.resume-skill p { margin:0; font-size:13px; line-height:1.7; }
+.resume-skill h3 { font-weight:600; }
+.resume-skill p { color:#555852; }
+@media(max-width:800px) { .portfolio-page,.resume-page { padding:0 24px; }.portfolio-category { grid-template-columns:1fr; gap:32px; padding:60px 0; }.portfolio-category-heading p { max-width:none; }.portfolio-intro { padding:92px 0; } }
+@media(max-width:600px) { .portfolio-page,.resume-page,.portfolio-detail { padding:0 20px; }.portfolio-header { height:70px; }.portfolio-name span { display:none; }.portfolio-header nav { gap:17px; }.portfolio-intro { padding:78px 0 80px; }.portfolio-intro h1 { margin:20px 0 35px; font-size:clamp(49px,11vw,68px); }.portfolio-intro-bottom { display:block; }.portfolio-intro-bottom p { font-size:14px; }.portfolio-intro-bottom a { margin-top:28px; }.portfolio-work-heading { gap:20px; }.portfolio-case { grid-template-columns:25px 1fr 18px; min-height:78px; gap:10px; }.portfolio-case-description { display:none; }.portfolio-footer { flex-wrap:wrap; padding:27px 0; min-height:0; }.portfolio-footer span { width:100%; }.resume-heading { padding-top:75px; }.resume-section { padding-top:66px; }.resume-entry-title { display:block; }.resume-entry-title time { display:block; margin-top:5px; }.resume-skill { grid-template-columns:1fr; gap:4px; }.resume-skills { padding-bottom:75px; } }

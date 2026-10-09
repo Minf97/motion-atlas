@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, Asterisk } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import { effects, getEffect } from "@/lib/effects"
 import { LoadingDemo } from "@/components/loading-demo"
 import { ScrollDemo } from "@/components/scroll-demo"
@@ -18,5 +17,11 @@ export default async function EffectPage({ params }: { params: Promise<{ slug: s
   const index = effects.findIndex((item) => item.slug === slug)
   const next = effects[(index + 1) % effects.length]
 
-  return <main className="detail-shell" id="smooth-top"><header className="detail-header"><Link href="/" className="brand" aria-label="返回 Motion Atlas 首页"><Asterisk aria-hidden="true" /><span>MOTION<br />ATLAS<span className="brand-dot">.</span></span></Link><span>INTERACTIVE STUDY / {effect.number}</span><Button asChild variant="outline"><Link href="/"><ArrowLeft data-icon="inline-start" /> 全部案例</Link></Button></header><div className="detail-intro"><div><span className="section-eyebrow">{effect.group.toUpperCase()} / EXPERIMENT {effect.number}</span><h1>{effect.title}<span>.</span></h1><p>{effect.description}</p></div><span className="detail-counter">{effect.number} <i>/</i> 14</span></div><div className="detail-demo">{effect.category === "loading" ? <LoadingDemo slug={slug} /> : effect.category === "smooth" ? <SmoothDemo /> : <ScrollDemo slug={slug} />}</div><div className="reference-panel"><span>REFERENCE / {effect.number}</span><div><strong>{effect.reference.name}</strong><p>{effect.reference.cue}</p></div><div className="reference-panel-links"><a href={effect.reference.url} target="_blank" rel="noopener noreferrer">查看原站 ↗</a>{effect.reference.motionUrl && <a href={effect.reference.motionUrl} target="_blank" rel="noopener noreferrer">动效记录 ↗</a>}</div></div><div className="detail-note"><span>HOW TO EXPERIENCE</span><p>{effect.category === "scrolling" ? "向下滚动，也试着反向滚动。每一步进度都由当前位置决定。" : effect.category === "smooth" ? "切换 Lenis 和 Native 模式，再点击锚点比较两种滚动手感。" : "点击演示中的按钮，观察动画的完整过程。"}</p></div><Link className="next-effect" href={`/effects/${next.slug}`}><span>NEXT EXPERIMENT / {next.number}</span><strong>{next.title}</strong><ArrowRight aria-hidden="true" /></Link></main>
+  return <main className="detail-shell portfolio-detail" id="smooth-top">
+    <header className="portfolio-header"><Link href="/" className="portfolio-name">胥昱全<span> / Frontend Engineer</span></Link><nav aria-label="主导航"><Link href="/"><ArrowLeft aria-hidden="true" /> 全部作品</Link><Link href="/resume">简历 <ArrowRight aria-hidden="true" /></Link></nav></header>
+    <div className="detail-intro"><div><span className="section-eyebrow">{effect.group} / {effect.number}</span><h1>{effect.subtitle}</h1><p>{effect.description}</p></div><span className="detail-counter">{effect.number} <i>/</i> 14</span></div>
+    <div className="detail-demo">{effect.category === "loading" ? <LoadingDemo slug={slug} /> : effect.category === "smooth" ? <SmoothDemo /> : <ScrollDemo slug={slug} />}</div>
+    <div className="detail-note"><span>体验方式</span><p>{effect.category === "scrolling" ? "向下滚动，再反向滚动，观察动作如何跟随页面位置变化。" : effect.category === "smooth" ? "切换 Lenis 和 Native 模式，点击锚点比较两种滚动手感。" : "点击演示中的按钮，观察完整的转场过程。"}</p></div>
+    <Link className="next-effect" href={`/effects/${next.slug}`}><span>下一个案例 / {next.number}</span><strong>{next.subtitle}</strong><ArrowRight aria-hidden="true" /></Link>
+  </main>
 }

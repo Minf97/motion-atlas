@@ -1,80 +1,39 @@
 import Link from "next/link"
-import { ArrowDownRight, ArrowUpRight, Asterisk } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { effects, type Effect, type EffectGroup } from "@/lib/effects"
+import { ArrowDownRight, ArrowUpRight } from "lucide-react"
+import { effects, type EffectGroup } from "@/lib/effects"
 
-const catalogue: { id: string; number: string; title: string; note: string; groups: EffectGroup[] }[] = [
-  { id: "loading", number: "01", title: "Loading", note: "首次进入与页面之间的切换", groups: ["Splash", "Transition"] },
-  { id: "scrolling", number: "02", title: "Scrolling", note: "由滚动触发，或由滚动精确驱动", groups: ["Scroll Trigger", "Scroll Driven"] },
-  { id: "smooth", number: "03", title: "Smooth Scrolling", note: "抵达某个位置的手感", groups: ["Lenis"] },
+const categories: { id: string; number: string; title: string; description: string; groups: { name: EffectGroup; label: string }[] }[] = [
+  { id: "loading", number: "01", title: "Loading", description: "进入一个页面，以及离开它。", groups: [{ name: "Splash", label: "首次进入" }, { name: "Transition", label: "页面转场" }] },
+  { id: "scrolling", number: "02", title: "Scrolling", description: "滚动既可以触发动作，也可以控制动作的进度。", groups: [{ name: "Scroll Trigger", label: "滚动触发" }, { name: "Scroll Driven", label: "滚动驱动" }] },
+  { id: "smooth", number: "03", title: "Smooth Scrolling", description: "用缓动改变页面到达目标位置的方式。", groups: [{ name: "Lenis", label: "缓动滚动" }] },
 ]
 
-const groupNames: Record<EffectGroup, string> = {
-  Splash: "首次进入",
-  Transition: "页面转场",
-  "Scroll Trigger": "滚动触发",
-  "Scroll Driven": "滚动驱动",
-  Lenis: "滚动缓动",
-}
-
-// 渲染案例索引
-function EffectRows({ items }: { items: Effect[] }) {
-  return <div className="index-rows">{items.map((effect) => <article className="index-row" key={effect.slug}>
-    <Link className="index-row-main" href={`/effects/${effect.slug}`}>
-      <span className="index-number">{effect.number}</span>
-      <span className="index-row-name"><strong>{effect.subtitle}</strong><small>{effect.title}</small></span>
-      <span className="index-row-cue">{effect.reference.cue}</span>
-      <ArrowUpRight aria-hidden="true" />
-    </Link>
-    <a className="index-row-reference" href={effect.reference.url} target="_blank" rel="noopener noreferrer" aria-label={`查看 ${effect.reference.name} 原站`}>
-      参考 / {effect.reference.name} ↗
-    </a>
-  </article>)}</div>
-}
-
 export default function Page() {
-  return <main className="site-shell index-shell" id="top">
-    <header className="site-header">
-      <Link href="/" className="brand" aria-label="Motion Atlas 首页"><Asterisk aria-hidden="true" /><span>MOTION<br />ATLAS<span className="brand-dot">.</span></span></Link>
-      <div className="header-caption">A curated collection of<br />frontend motion studies</div>
-      <nav aria-label="分类导航" className="header-nav"><a href="#loading">Loading</a><a href="#scrolling">Scrolling</a><a href="#smooth">Smooth</a></nav>
-      <span className="header-index">INDEX / 2026</span>
+  return <main className="portfolio-page" id="top">
+    <header className="portfolio-header">
+      <Link href="/" className="portfolio-name">胥昱全<span> / Frontend Engineer</span></Link>
+      <nav aria-label="主导航"><a href="#work">作品</a><Link href="/resume">简历 <ArrowUpRight aria-hidden="true" /></Link></nav>
     </header>
 
-    <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-copy">
-        <div className="eyebrow"><span className="live-dot" /> FRONTEND MOTION INDEX <span className="eyebrow-line" /> 14 STUDIES</div>
-        <h1 id="hero-title">The motion<br /><em>index</em><span className="hero-period">.</span></h1>
-        <div className="hero-bottom"><p>一个可以逐项打开的动效目录。<br />每个案例都有明确的原站与观察入口。</p><Button asChild size="lg" className="hero-cta"><a href="#directory">查看目录 <ArrowDownRight data-icon="inline-end" /></a></Button></div>
-      </div>
-      <div className="hero-art hero-contact" aria-label="Lusion、Filmbot 与 Jealous Films 的案例预览">
-        <div className="hero-contact-top"><span>SELECTED REFERENCES</span><span>01 — 14</span></div>
-        <figure className="hero-contact-image hero-contact-lusion"><figcaption>LUSION　/　LOADING</figcaption></figure>
-        <figure className="hero-contact-image hero-contact-filmbot"><figcaption>FILMBOT　/　SCROLLING</figcaption></figure>
-        <figure className="hero-contact-image hero-contact-jealous"><figcaption>JEALOUS FILMS　/　TRANSITION</figcaption></figure>
-      </div>
-      <div className="hero-footer"><span>SCROLL TO EXPLORE ↓</span><span>14 STUDIES / 03 CATEGORIES</span></div>
+    <section className="portfolio-intro" aria-labelledby="portfolio-title">
+      <span className="portfolio-overline">SELECTED WORK · 2026</span>
+      <h1 id="portfolio-title">前端交互<br />作品集。</h1>
+      <div className="portfolio-intro-bottom"><p>我是胥昱全，一名前端工程师。这里收录我对网页加载、页面转场与滚动交互的实践。点击任一案例，可以直接体验它的运动方式。</p><a href="#work">浏览作品 <ArrowDownRight aria-hidden="true" /></a></div>
     </section>
 
-    <nav className="directory-map" id="directory" aria-label="完整案例目录">
-      <div className="directory-map-heading"><span>DIRECTORY</span><p>从类型找到动作，<br />再进入完整演示。</p></div>
-      <div className="directory-map-columns">{catalogue.map((category) => <div className="directory-map-column" key={category.id}>
-        <a className="directory-map-title" href={`#${category.id}`}><span>{category.number}</span><strong>{category.title}</strong><ArrowDownRight aria-hidden="true" /></a>
-        {category.groups.map((group) => <div className="directory-map-group" key={group}>
-          <span>{group} <em>/ {groupNames[group]}</em></span>
-          {effects.filter((effect) => effect.group === group).map((effect) => <Link href={`/effects/${effect.slug}`} key={effect.slug}>{effect.subtitle}</Link>)}
-        </div>)}
-      </div>)}</div>
-    </nav>
+    <div className="portfolio-work" id="work">
+      <div className="portfolio-work-heading"><span>作品目录</span><span>{effects.length} 个交互案例 / 03 个类别</span></div>
+      {categories.map((category) => <section className="portfolio-category" id={category.id} key={category.id} aria-labelledby={`${category.id}-title`}>
+        <div className="portfolio-category-heading"><span>{category.number} / 03</span><div><h2 id={`${category.id}-title`}>{category.title}</h2><p>{category.description}</p></div></div>
+        <div className="portfolio-category-content">{category.groups.map((group) => <div className="portfolio-group" key={group.name}>
+          <h3><span>{group.name}</span><small>{group.label}</small></h3>
+          <div className="portfolio-case-list">{effects.filter((effect) => effect.group === group.name).map((effect) => <Link className="portfolio-case" href={`/effects/${effect.slug}`} key={effect.slug}>
+            <span className="portfolio-case-number">{effect.number}</span><span className="portfolio-case-title">{effect.subtitle}<small>{effect.title}</small></span><span className="portfolio-case-description">{effect.description}</span><ArrowUpRight aria-hidden="true" />
+          </Link>)}</div>
+        </div>)}</div>
+      </section>)}
+    </div>
 
-    {catalogue.map((category) => <section className="index-section" id={category.id} key={category.id} aria-labelledby={`${category.id}-title`}>
-      <div className="index-section-heading"><span>{category.number} / 03</span><h2 id={`${category.id}-title`}>{category.title}</h2><p>{category.note}</p></div>
-      {category.groups.map((group) => <div className="index-group" key={group}>
-        <div className="index-group-heading"><span>{group}</span><span>{groupNames[group]}</span><span>{String(effects.filter((effect) => effect.group === group).length).padStart(2, "0")}</span></div>
-        <EffectRows items={effects.filter((effect) => effect.group === group)} />
-      </div>)}
-    </section>)}
-
-    <footer className="site-footer"><div><Asterisk aria-hidden="true" /><span>Motion Atlas<br />An index of observed interactions.</span></div><a href="#top">BACK TO TOP ↑</a><span>© MOTION ATLAS — 2026</span></footer>
+    <footer className="portfolio-footer"><span>胥昱全 · 前端开发与交互设计</span><Link href="/resume">查看简历 <ArrowUpRight aria-hidden="true" /></Link><a href="#top">返回顶部 ↑</a></footer>
   </main>
 }
