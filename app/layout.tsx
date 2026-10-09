@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, DM_Sans, IBM_Plex_Mono, Instrument_Serif, Geist } from "next/font/google"
+import { Bricolage_Grotesque, DM_Sans, IBM_Plex_Mono, Instrument_Serif, Geist, Montserrat, Playfair_Display } from "next/font/google"
 
 import "./globals.css"
 import "./catalogue.css"
@@ -8,6 +8,9 @@ import "./driven-studies.css"
 import "./smooth-studies.css"
 import "./portfolio.css"
 import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-portfolio-body" })
+const playfair = Playfair_Display({ subsets: ["latin"], weight: "400", variable: "--font-portfolio-heading" })
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -27,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" className={cn(display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
+    <html lang="zh-CN" className={cn(montserrat.variable, playfair.variable, display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
       <body>{children}</body>
     </html>
   )

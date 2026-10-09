@@ -67,3 +67,38 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font-body),s
 .resume-skill p { color:#555852; }
 @media(max-width:800px) { .portfolio-page,.resume-page { padding:0 24px; }.portfolio-category { grid-template-columns:1fr; gap:32px; padding:60px 0; }.portfolio-category-heading p { max-width:none; }.portfolio-intro { padding:92px 0; } }
 @media(max-width:600px) { .portfolio-page,.resume-page,.portfolio-detail { padding:0 20px; }.portfolio-header { height:70px; }.portfolio-name span { display:none; }.portfolio-header nav { gap:17px; }.portfolio-intro { padding:78px 0 80px; }.portfolio-intro h1 { margin:20px 0 35px; font-size:clamp(49px,11vw,68px); }.portfolio-intro-bottom { display:block; }.portfolio-intro-bottom p { font-size:14px; }.portfolio-intro-bottom a { margin-top:28px; }.portfolio-work-heading { gap:20px; }.portfolio-case { grid-template-columns:25px 1fr 18px; min-height:78px; gap:10px; }.portfolio-case-description { display:none; }.portfolio-footer { flex-wrap:wrap; padding:27px 0; min-height:0; }.portfolio-footer span { width:100%; }.resume-heading { padding-top:75px; }.resume-section { padding-top:66px; }.resume-entry-title { display:block; }.resume-entry-title time { display:block; margin-top:5px; }.resume-skill { grid-template-columns:1fr; gap:4px; }.resume-skills { padding-bottom:75px; } }
+
+/* 对齐参考字体 */
+.portfolio-page,.resume-page,.portfolio-detail { font-family:var(--font-portfolio-body),"PingFang SC",sans-serif; font-weight:400; }
+.portfolio-intro h1,.portfolio-category-heading h2,.resume-heading h1,.resume-section h2,.portfolio-detail .detail-intro h1 { font-family:var(--font-portfolio-heading),"Songti SC",serif; font-weight:400; letter-spacing:0; }
+.portfolio-page,.resume-page { background:#fff; }
+body { background:#fff; }
+.portfolio-name,.portfolio-group h3,.portfolio-case-title { font-weight:400; letter-spacing:0; }
+.resume-content { max-width:700px; }
+.resume-heading { padding:80px 0 20px; }
+.resume-heading h1 { font-size:48px; line-height:1.2; }
+.resume-summary { font-size:16px; line-height:24px; }
+.resume-section { padding-top:48px; }
+.resume-section h2 { font-size:24px; line-height:32px; margin-bottom:24px; }
+.resume-entry { border:0; padding:0 0 28px; }
+.resume-entry-title h3 { font-size:20px; line-height:28px; font-weight:400; letter-spacing:0; }
+.resume-entry-title time { font-size:14px; line-height:20px; }
+.resume-role,.resume-entry ul { font-size:16px; line-height:24px; }
+.resume-role { margin:5px 0 12px; }
+.resume-skill { border:0; }
+.resume-skill h3,.resume-skill p { font-size:14px; font-weight:400; }
+.resume-details summary { display:inline-flex; align-items:center; gap:8px; cursor:pointer; list-style:none; font-size:14px; padding:4px 0; color:#555; }
+.resume-details summary::-webkit-details-marker { display:none; }
+.resume-details summary svg { width:14px; height:14px; transition:transform .2s ease; }
+.resume-details[open] summary svg { transform:rotate(180deg); }
+.resume-details ul { margin-top:12px; }
+.resume-details summary:hover { color:#111; }
+a:focus-visible,summary:focus-visible { outline:2px solid #555; outline-offset:5px; }
+@media(max-width:600px) { .resume-heading h1 { font-size:40px; }.resume-entry-title h3 { overflow-wrap:anywhere; }.resume-entry-title time { margin-top:8px; }.resume-section { padding-top:40px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.portfolio-case>svg,.resume-details summary svg { transition:none; } }
+.portfolio-page h3,.resume-page h3 { font-family:var(--font-portfolio-body),"PingFang SC",sans-serif; }
+.resume-print { position:fixed; bottom:24px; right:24px; display:grid; place-items:center; width:42px; height:42px; background:#fff; border:1px solid #ddd; border-radius:50%; cursor:pointer; z-index:20; transition:background .2s; }
+.resume-print svg { width:18px; height:18px; }
+.resume-print:hover { background:#f5f5f5; }
+.resume-print:focus-visible { outline:2px solid #555; outline-offset:4px; }
+@media print { .resume-page { padding:0; max-width:none; }.resume-page .portfolio-header,.resume-page .portfolio-footer,.resume-print { display:none; }.resume-heading { padding-top:0; }.resume-section { padding-top:24px; }.resume-entry { break-inside:avoid; }.resume-details::details-content { content-visibility:visible; height:auto; }.resume-details summary { display:none; }.resume-skills { padding-bottom:0; }.resume-page { color:#000; } }
