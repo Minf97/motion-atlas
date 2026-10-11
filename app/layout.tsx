@@ -7,6 +7,8 @@ import "./scroll-studies.css"
 import "./driven-studies.css"
 import "./smooth-studies.css"
 import "./portfolio.css"
+import "./theme.css"
+import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-portfolio-body" })
@@ -30,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" className={cn(montserrat.variable, playfair.variable, display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
-      <body>{children}</body>
+    <html lang="zh-CN" suppressHydrationWarning className={cn(montserrat.variable, playfair.variable, display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
+      <body><ThemeProvider>{children}</ThemeProvider></body>
     </html>
   )
 }

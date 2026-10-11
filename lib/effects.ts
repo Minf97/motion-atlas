@@ -36,3 +36,17 @@ export const effects: Effect[] = [
 ]
 
 export const getEffect = (slug: string) => effects.find((effect) => effect.slug === slug)
+
+
+// 生成相邻导航
+export function getEffectNavigation(slug: string, english = false) {
+  const index = effects.findIndex(effect => effect.slug === slug)
+  if (index === -1) throw new Error(`Unknown effect: ${slug}`)
+  const prefix = english ? "/en" : ""
+  return {
+    home: `${prefix}/#work`,
+    previous: effects[(index - 1 + effects.length) % effects.length],
+    next: effects[(index + 1) % effects.length],
+    prefix,
+  }
+}

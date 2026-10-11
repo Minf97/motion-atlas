@@ -41,6 +41,6 @@ export function ResumeView({ english = false }: { english?: boolean }) {
         {profile.skills.map(skill => <div className="resume-skill" key={skill.title}><h3>{skill.title}</h3><p>{skill.items}</p></div>)}
       </section>
     </div>
-    <footer className="portfolio-footer"><span>{profile.name} · {profile.role}</span><Link href={english ? "/en" : "/"}>{english ? "View work" : "查看作品"} <ArrowUpRight aria-hidden="true" /></Link><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer>
+    <footer className="portfolio-footer"><span>{profile.name} · {profile.role}</span><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer>
   </main>
 }

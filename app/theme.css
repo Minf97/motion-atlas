@@ -1,0 +1,28 @@
+:root { --paper:#fff; --body-text:#555852; --detail-text:#666963; }
+html.dark { --ink:#e9e9e4; --paper:#191a18; --muted:#a0a29b; --line:#383a35; --lime:#e9e9e4; --background:#191a18; --foreground:#e9e9e4; --primary:#e9e9e4; --primary-foreground:#191a18; --border:#383a35; --body-text:#b9bcb3; --detail-text:#b9bcb3; color-scheme:dark; }
+body,.portfolio-page,.resume-page,.portfolio-header { background:var(--paper); }
+.portfolio-header { z-index:30; }
+.portfolio-name { display:inline-flex; align-items:center; gap:9px; }
+.portfolio-header .site-logo { width:24px; height:24px; flex:none; }
+.portfolio-intro-bottom p,.resume-summary,.resume-entry ul,.resume-skill p { color:var(--body-text); }
+.portfolio-detail .detail-intro p,.portfolio-detail .detail-note p { color:var(--detail-text); }
+.resume-details summary { color:var(--body-text); }
+.resume-details summary:hover { color:var(--ink); }
+.resume-print { background:var(--paper); color:var(--ink); border-color:var(--line); }
+.resume-print:hover { background:var(--line); }
+::selection { background:var(--line); color:var(--ink); }
+.theme-toggle { display:grid; place-items:center; width:32px; height:32px; padding:0; border:0; border-radius:50%; background:transparent; color:var(--ink); cursor:pointer; }
+.portfolio-header .theme-toggle svg { width:17px; height:17px; grid-area:1 / 1; }
+.theme-toggle:hover { background:var(--line); }
+.theme-toggle:focus-visible { outline:1px solid var(--ink); outline-offset:4px; }
+.theme-moon { display:none; }
+.dark .theme-moon { display:block; }
+.dark .theme-sun { display:none; }
+/* 保留转场层序 */
+::view-transition-old(root),::view-transition-new(root) { animation:none; mix-blend-mode:normal; }
+::view-transition-old(root) { z-index:1; }
+::view-transition-new(root) { z-index:2; }
+.dark::view-transition-old(root) { z-index:2; }
+.dark::view-transition-new(root) { z-index:1; }
+@media(max-width:600px) { .portfolio-header { gap:12px; }.portfolio-header nav { gap:14px; }.portfolio-header .site-logo { width:20px; height:20px; }.portfolio-name { gap:6px; } }
+@media print { html.dark { --paper:#fff; --ink:#000; --muted:#555; --body-text:#333; --line:#ddd; color-scheme:light; } }

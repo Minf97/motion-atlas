@@ -5,6 +5,7 @@ const basePath = isGithubPages ? "/motion-atlas" : ""
 
 const nextConfig: NextConfig = {
   output: "export",
+  devIndicators: false,
   trailingSlash: true,
   images: { unoptimized: true },
   ...(isGithubPages ? { basePath, assetPrefix: `${basePath}/` } : {}),
