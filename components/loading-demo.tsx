@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import NextImage from "next/image"
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { amaterasuFrame, amaterasuFrameCount, amaterasuFrameUrl, amaterasuPageName } from "@/lib/amaterasu"
+import { amaterasuCoverFrame, amaterasuFrame, amaterasuFrameCount, amaterasuFrameUrl, amaterasuPageName } from "@/lib/amaterasu"
 
 function SplashDemo({ english }: { english: boolean }) {
   const [cycle, setCycle] = useState(0)
@@ -64,7 +64,7 @@ function MaskDemo({ english }: { english: boolean }) {
     const update = (time: number) => {
       const nextFrame = amaterasuFrame(time - start)
       setFrame(nextFrame)
-      if (nextFrame >= 45 && !switched) {
+      if (nextFrame >= amaterasuCoverFrame && !switched) {
         switched = true
         setPage((value) => 1 - value)
       }

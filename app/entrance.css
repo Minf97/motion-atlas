@@ -1,0 +1,19 @@
+.minf-entrance { position:fixed; inset:0; z-index:100; background:#151613; color:#f5f4ef; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:var(--font-portfolio-body),sans-serif; }
+.entrance-brand { display:flex; flex-direction:column; align-items:center; }
+.entrance-wordmark { width:clamp(210px,24vw,280px); height:auto; overflow:visible; }
+.entrance-wordmark path { fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:entrance-write linear forwards; }
+.entrance-enter { display:grid; place-items:center; width:42px; height:42px; margin-top:46px; padding:0; border:1px solid #6a6c64; border-radius:7px; background:transparent; color:inherit; cursor:pointer; opacity:1; transition:opacity .35s,border-color .2s,background .2s; }
+.entrance-enter:disabled { opacity:0; pointer-events:none; }
+.entrance-enter svg { width:23px; height:23px; transition:transform .2s; }
+.entrance-enter:hover svg { transform:translateX(3px); }
+.entrance-enter:hover { background:#282a24; border-color:#f5f4ef; }
+.entrance-enter:focus-visible { outline:1px solid #f5f4ef; outline-offset:6px; }
+.entrance-status { margin-top:17px; color:#a8aaa2; font-size:10px; letter-spacing:.08em; }
+.entrance-content:focus { outline:none; }
+.entrance-leaving { pointer-events:none; animation:entrance-curtain .8s cubic-bezier(.76,0,.24,1) forwards; }
+.entrance-leaving .entrance-brand,.entrance-leaving .entrance-enter,.entrance-leaving .entrance-status { transition:opacity .2s; opacity:0; }
+@keyframes entrance-write { to { stroke-dashoffset:0; } }
+@keyframes entrance-curtain { to { transform:translateY(-100%); } }
+@media(prefers-reduced-motion:reduce) { .entrance-wordmark path { animation:none; stroke-dashoffset:0; }.entrance-enter,.entrance-enter svg { transition:none; }.entrance-leaving { animation:entrance-fade .15s linear forwards; } }
+@keyframes entrance-fade { to { opacity:0; } }
+@media print { .minf-entrance { display:none; } }

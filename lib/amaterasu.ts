@@ -1,5 +1,6 @@
 export const amaterasuFrameCount = 90
 export const amaterasuFrameDuration = 30
+export const amaterasuCoverFrame = 45
 
 // 标记当前页面
 export function amaterasuPageName(page: number) {

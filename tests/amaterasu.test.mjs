@@ -1,6 +1,12 @@
 import test from "node:test"
 import assert from "node:assert/strict"
-import { amaterasuFrame, amaterasuFrameCount, amaterasuFrameDuration, amaterasuFrameUrl, amaterasuPageName } from "../lib/amaterasu.ts"
+import { amaterasuCoverFrame, amaterasuFrame, amaterasuFrameCount, amaterasuFrameDuration, amaterasuFrameUrl, amaterasuPageName } from "../lib/amaterasu.ts"
+
+test("page navigation and the demo share the fully covered frame", () => {
+  assert.equal(amaterasuCoverFrame, 45)
+  assert.equal(amaterasuFrame(amaterasuCoverFrame * amaterasuFrameDuration), amaterasuCoverFrame)
+  assert.ok(amaterasuCoverFrame < amaterasuFrameCount - 1)
+})
 
 test("Amaterasu image sequence covers and reveals at 30 fps", () => {
   assert.equal(amaterasuFrameCount, 90)

@@ -8,6 +8,10 @@ import "./driven-studies.css"
 import "./smooth-studies.css"
 import "./portfolio.css"
 import "./theme.css"
+import "./entrance.css"
+import "./page-transition.css"
+import { PageTransition } from "@/components/page-transition"
+import { Entrance } from "@/components/entrance"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
@@ -33,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning className={cn(montserrat.variable, playfair.variable, display.variable, body.variable, mono.variable, serif.variable, "font-sans", geist.variable)}>
-      <body><ThemeProvider>{children}</ThemeProvider></body>
+      <body><ThemeProvider><Entrance><PageTransition>{children}</PageTransition></Entrance></ThemeProvider></body>
     </html>
   )
 }
