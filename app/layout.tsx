@@ -20,8 +20,8 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--fon
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: "italic", variable: "--font-serif" })
 
 export const metadata = {
-  title: "胥昱全 — 前端开发与交互作品集",
-  description: "胥昱全的前端作品集，收录 Loading、页面转场、滚动交互与 Lenis 缓动案例。",
+  title: "Minf｜Agent Engineer",
+  description: "Portfolio of Minf (胥昱全) - Agent Engineer, Motion Designer, and Frontend Developer.",
 }
 
 export default function RootLayout({

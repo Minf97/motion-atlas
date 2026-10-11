@@ -10,7 +10,7 @@ test("public resume keeps verified contact details without publishing a phone nu
 })
 
 test("resume covers all documented work and projects", () => {
-  assert.deepEqual(experience.map(({ company }) => company), ["蔚灵深度科技有限公司", "Pacagen", "深圳朋圈科技有限公司", "深圳四博智联科技有限公司"])
+  assert.deepEqual(experience.map(({ company }) => company), ["蔚灵深度科技有限公司", "Pacagen", "深圳用图科技有限公司", "深圳四博智联科技有限公司"])
   assert.deepEqual(projects.map(({ name }) => name), ["We 校园", "MurmRay", "Agora Space", "We AI"])
   for (const item of [...experience, ...projects]) {
     assert.ok(item.date)

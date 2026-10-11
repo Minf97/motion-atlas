@@ -1,3 +1,6 @@
+export const personal = { birthday: "Dec 2000", mbti: "ESTP" }
+export const education = { school: "广东石油化工学院", date: "Sep 2019 — July 2023" }
+
 export const profile = {
   name: "胥昱全",
   role: "前端 Agent 工程师",
@@ -14,9 +17,9 @@ export const profile = {
 }
 
 export const experience = [
-  { company: "蔚灵深度科技有限公司", role: "联合创始人", location: "杭州", date: "2026.04 — 至今", details: ["参与 We0 多智能体 AI Coding 建站与增长平台建设，负责多 Agent 架构、设计画布、模板与全栈生成，以及增长分发平台。", "优化设计稿生成链路，将耗时从 8–12 分钟缩短至 1–4 分钟。"] },
+  { company: "蔚灵深度科技有限公司", role: "联合创始人", location: "杭州", date: "2025.12 — 至今", details: ["参与 We0 多智能体 AI Coding 建站与增长平台建设，负责多 Agent 架构、设计画布、模板与全栈生成，以及增长分发平台。"] },
   { company: "Pacagen", role: "Developer", location: "深圳", date: "2025.05 — 2025.12", details: ["建设 Shopify Headless 官网，使用 Hydrogen、Remix、Storefront API 与 GraphQL，首屏加载速度提升 60%。", "开发客服 RAG Agent、Growth & Data Analytics 中台及 AIGC 短视频工作流。"] },
-  { company: "深圳朋圈科技有限公司", role: "前端 K 线工程师", location: "深圳", date: "2024.02 — 2025.03", details: ["参与 AICoin 官网与 Electron 客户端开发，建设 React + Canvas K 线 SDK 及 WebSocket 聊天室。"] },
+  { company: "深圳用图科技有限公司", role: "前端 K 线工程师", location: "深圳", date: "2024.02 — 2025.03", details: ["参与 AICoin 官网与 Electron 客户端开发，建设 React + Canvas K 线 SDK 及 WebSocket 聊天室。"] },
   { company: "深圳四博智联科技有限公司", role: "前端工程师", location: "深圳", date: "2022.10 — 2024.02", details: ["开发 CozyLife 微信小程序、智慧门铃音视频 SDK 和 Kconfig 表单生成器。"] },
 ]
 
