@@ -19,4 +19,4 @@ Reviewed Markdown documents in `knowledge/` are indexed with local TF-IDF vector
 pytest
 ```
 
-The Agent page runs two fixed evaluation cases: personal knowledge and web search. Checks inspect actual tool calls, evidence and numbered citations. Credentials stay server-side. The OpenAI-compatible relay must support chat function calling.
+The Agent page runs two fixed evaluation cases: personal knowledge and web search. Each run emits case scores for tool selection, evidence, grounded citations and answer quality, plus trace metadata and a final summary. Tool failures are recorded as failed cases so the run remains inspectable. Credentials stay server-side. The OpenAI-compatible relay must support chat function calling.
