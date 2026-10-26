@@ -37,6 +37,10 @@ def test_personal_question_uses_knowledge_tool_and_traces_it():
 
 def test_external_question_uses_web_search_and_evaluation_reports_checks():
     results = asyncio.run(collect(run_cases(make_workflow(), "deepseek")))
-    assert len(results) == 2
-    assert all(result["passed"] for result in results)
-    assert results[1]["tools"] == ["web_search"]
+    cases = [result for result in results if result["type"] == "case"]
+    summary = results[-1]
+    assert len(cases) == 2
+    assert all(result["passed"] for result in cases)
+    assert cases[1]["tools"] == ["web_search"]
+    assert summary["type"] == "summary"
+    assert summary["pass_rate"] == 1

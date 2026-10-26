@@ -38,6 +38,7 @@
 .bili-count { display: flex; align-items: baseline; justify-content: flex-end; gap: 7px; font: 500 22px var(--font-mono), monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bili-count small { color: #777873; font: 11px var(--font-portfolio-body), sans-serif; }
 .bili-count time { flex-basis: 100%; color: #92938e; font: 10px var(--font-mono), monospace; text-align: right; }
+.bili-count time.is-stale { color: var(--bili-accent); }
 .bili-footnote { margin: 20px 0 0; color: #777873; font-size: 11px; line-height: 1.7; }
 .bili-message { display: grid; gap: 8px; padding: 24px 0; border-bottom: 1px solid #ecece8; color: #555650; font-size: 13px; line-height: 1.7; }
 .bili-message strong { color: #262722; font-weight: 500; }

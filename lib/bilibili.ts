@@ -9,6 +9,8 @@ export type BilibiliVideo = {
   author: string
   online: number
   online_updated_at: string
+  age_seconds?: number | null
+  stale?: boolean
   sample_error: string | null
   area: string
   rank: number

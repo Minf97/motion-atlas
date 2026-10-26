@@ -18,7 +18,11 @@ export type AgentEvent = {
   sequence?: number
 }
 export type AgentEvaluation = {
-  id: string; question: string; passed: boolean; checks: Record<string, boolean>; tools: string[]; duration_ms: number
+  type?: "case" | "summary"
+  id: string; question?: string; passed?: boolean; checks?: Record<string, boolean>; tools?: string[]
+  scores?: Record<string, number>; trace?: { events: number; tool_calls: number; evidence: number; answer_chars: number }
+  run_id: string; model: AgentModel; duration_ms: number
+  cases?: number; pass_rate?: number; overall_score?: number
 }
 export type AgentTurn = {
   id: string; question: string; model: AgentModel; events: AgentEvent[]

@@ -63,24 +63,29 @@ class BilibiliStore:
         return [json.loads(item) for item in records if item]
 
     async def get_ranking(self, category: Literal["technology", "life"]) -> dict:
-        # 隐去过期人数
+        # 保留历史观测
         records = await self.get_candidates(category)
         now = datetime.now(timezone.utc)
-        fresh = [
-            item for item in records
-            if item.get("online_updated_at") and
-            (now - datetime.fromisoformat(item["online_updated_at"])).total_seconds() <= self.max_age_seconds
-        ]
-        fresh.sort(key=lambda item: item["online"], reverse=True)
+        observed = []
+        for item in records:
+            updated_at = item.get("online_updated_at")
+            age_seconds = None
+            if updated_at:
+                age_seconds = max(0, round((now - datetime.fromisoformat(updated_at)).total_seconds()))
+            if "online" in item:
+                observed.append({**item, "age_seconds": age_seconds,
+                                 "stale": age_seconds is not None and age_seconds > self.max_age_seconds})
+        observed.sort(key=lambda item: item["online"], reverse=True)
         status = await self.redis.hgetall("bilibili:collector:status")
+        sampled_at = max((item["online_updated_at"] for item in observed if item.get("online_updated_at")), default=None)
         return {
             "category": category,
-            "sampled_at": max((item["online_updated_at"] for item in fresh), default=None),
+            "sampled_at": sampled_at,
             "candidate_count": len(records),
-            "fresh_count": len(fresh),
-            "stale_count": len(records) - len(fresh),
+            "fresh_count": sum(1 for item in observed if not item["stale"]),
+            "stale_count": sum(1 for item in observed if item["stale"]),
             "collector": status,
-            "videos": [{**item, "rank": index + 1} for index, item in enumerate(fresh)],
+            "videos": [{**item, "rank": index + 1} for index, item in enumerate(observed)],
         }
 
     @staticmethod

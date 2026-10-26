@@ -70,7 +70,7 @@ class MemoryRedis:
         self.hashes[key] = mapping
 
 
-def test_store_keeps_last_success_and_excludes_stale_observations():
+def test_store_keeps_last_success_and_marks_stale_observations():
     async def run():
         redis = MemoryRedis()
         store = BilibiliStore(redis, max_age_seconds=30)
@@ -87,7 +87,9 @@ def test_store_keeps_last_success_and_excludes_stale_observations():
         assert result["candidate_count"] == 1
         assert result["fresh_count"] == 0
         assert result["stale_count"] == 1
-        assert result["videos"] == []
+        assert result["videos"][0]["aid"] == "1"
+        assert result["videos"][0]["stale"] is True
+        assert result["videos"][0]["age_seconds"] >= 30
     asyncio.run(run())
 
 

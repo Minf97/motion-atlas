@@ -16,6 +16,7 @@ export function useAgent(english: boolean) {
   const [connection, setConnection] = useState<"connecting" | "connected" | "error">("connecting")
   const [connectionError, setConnectionError] = useState("")
   const [evaluations, setEvaluations] = useState<AgentEvaluation[]>([])
+  const [evaluationSummary, setEvaluationSummary] = useState<AgentEvaluation | null>(null)
   const [evaluating, setEvaluating] = useState(false)
   const [evaluationError, setEvaluationError] = useState("")
   const controller = useRef<AbortController | null>(null)
@@ -98,6 +99,7 @@ export function useAgent(english: boolean) {
     evaluationController.current = abort
     setEvaluating(true)
     setEvaluations([])
+    setEvaluationSummary(null)
     setEvaluationError("")
     try {
       if (!agentApiUrl) throw new Error(english ? "Agent API is not configured." : "Agent API 尚未配置。")
@@ -107,7 +109,8 @@ export function useAgent(english: boolean) {
         if (!line) return
         const result = JSON.parse(line.slice(5)) as AgentEvaluation & { error?: string }
         if (result.error) throw new Error(result.error)
-        setEvaluations(current => [...current, result])
+        if (result.type === "summary") setEvaluationSummary(result)
+        else setEvaluations(current => [...current, result])
       })
     } catch (error) {
       if (!abort.signal.aborted) setEvaluationError(error instanceof Error ? error.message : String(error))
@@ -119,6 +122,6 @@ export function useAgent(english: boolean) {
 
   return { model, setModel, turns, active, setActiveId, workspace, connection, connectionError, connect, loading,
     send, stop: () => controller.current?.abort(), newChat: () => { if (!controller.current) { setTurns([]); setActiveId("") } },
-    evaluations, evaluating, evaluationError, evaluate }
+    evaluations, evaluationSummary, evaluating, evaluationError, evaluate }
 }
 export type AgentController = ReturnType<typeof useAgent>

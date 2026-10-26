@@ -74,13 +74,13 @@ export function BilibiliRankingView({ english = false }: { english?: boolean }) 
             {english ? (item === "technology" ? "Technology" : "Life") : categoryNames[item]}
           </button>)}
         </div>
-        <p>{loading ? (english ? "Loading cached observations…" : `正在读取${selectedName}分区缓存…`) : ranking ? (english ? `${ranking.fresh_count}/${ranking.candidate_count} fresh · latest ${sampledTime}` : `${ranking.fresh_count}/${ranking.candidate_count} 条数据新鲜 · 最近观测 ${sampledTime}`) : (english ? "Waiting for data" : "等待数据")}</p>
+        <p>{loading ? (english ? "Loading cached observations…" : `正在读取${selectedName}分区缓存…`) : ranking ? (english ? `${ranking.videos.length}/${ranking.candidate_count} observed · latest ${sampledTime}` : `${ranking.videos.length}/${ranking.candidate_count} 条已有观测 · 最近观测 ${sampledTime}`) : (english ? "Waiting for data" : "等待数据")}</p>
       </div>
 
       {error ? <div className="bili-message" role="alert"><strong>{english ? "Could not load ranking" : "排行榜暂时无法读取"}</strong><span>{error}</span></div> : null}
-      {!error && coolingDown ? <div className="bili-message" role="status"><strong>{english ? "Collector paused" : "采集暂时冷却"}</strong><span>{english ? "Bilibili returned a risk-control response. Last successful observations are kept; stale values are hidden." : "B 站返回风控响应，采集器正在冷却。保留最近一次成功观测，过期数据不会显示为实时排行。"}</span></div> : null}
+      {!error && coolingDown ? <div className="bili-message" role="status"><strong>{english ? "Collector paused" : "采集暂时冷却"}</strong><span>{english ? "Bilibili returned a risk-control response. Cached observations remain visible and are labeled with their last-seen time." : "B 站返回风控响应，采集器正在冷却。缓存观测仍会显示，并标记上次观测时间。"}</span></div> : null}
       {!error && loading && !ranking ? <div className="bili-message" aria-live="polite">{english ? "Loading observations from the collector…" : `正在读取${selectedName}分区的采集结果…`}</div> : null}
-      {!error && !loading && ranking?.videos.length === 0 ? <div className="bili-message">{ranking.candidate_count === 0 ? (english ? "The collector is warming up its first candidate list." : "采集器正在准备首批候选视频。") : ranking.stale_count > 0 ? (english ? "No recent observations are available yet." : "当前还没有新鲜观测，采集器正在更新数据。") : (english ? "No candidates were found for this category." : "这个分区暂时没有候选视频。")}</div> : null}
+      {!error && !loading && ranking?.videos.length === 0 ? <div className="bili-message">{ranking.candidate_count === 0 ? (english ? "The collector is warming up its first candidate list." : "采集器正在准备首批候选视频。") : (english ? "No observations are available yet." : "当前还没有观测数据。")}</div> : null}
 
       {ranking && !error ? <>
         <div className="bili-table-head"><span>{english ? "RANK / VIDEO" : "排名 / 视频"}</span><span>{english ? "WATCHING NOW" : "同时在看"}</span></div>
@@ -92,10 +92,10 @@ export function BilibiliRankingView({ english = false }: { english?: boolean }) 
               <span className="bili-video-copy"><strong>{video.title}</strong><small>{video.author}{video.area ? ` · ${video.area}` : ""}</small></span>
               <ArrowUpRight aria-hidden="true" />
             </a>
-            <strong className="bili-count">{formatOnlineCount(video.online)}<small>{english ? "watching" : "人同时在看"}</small><time dateTime={video.online_updated_at}>{english ? "Observed " : "观测于 "}{formatObservationTime(video.online_updated_at, english)}</time></strong>
+            <strong className="bili-count">{formatOnlineCount(video.online)}<small>{english ? "watching" : "人同时在看"}</small><time className={video.stale ? "is-stale" : undefined} dateTime={video.online_updated_at}>{video.stale ? (english ? "Last seen " : "上次观测 ") : (english ? "Observed " : "观测于 ")}{formatObservationTime(video.online_updated_at, english)}</time></strong>
           </li>)}
         </ol>
-        <p className="bili-footnote">{english ? `Candidates are discovered from Bilibili category rankings. The background collector samples sequentially; ${ranking.stale_count} stale observations are excluded.` : `候选来自 B 站分区排行榜，由后台单队列逐条采样；${ranking.stale_count} 条过期观测已排除。`}</p>
+        <p className="bili-footnote">{english ? `Candidates are discovered from Bilibili category rankings. The background collector samples sequentially; ${ranking.stale_count} observations are older than the freshness window and remain visible with their last-seen time.` : `候选来自 B 站分区排行榜，由后台单队列逐条采样；${ranking.stale_count} 条超过新鲜度窗口的观测仍保留，并标记上次观测时间。`}</p>
       </> : null}
     </section>
   </main>
