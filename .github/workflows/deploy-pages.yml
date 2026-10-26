@@ -30,7 +30,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_AGENT_API_URL: ${{ vars.NEXT_PUBLIC_AGENT_API_URL }}
+          NEXT_PUBLIC_AGENT_API_URL: ${{ vars.NEXT_PUBLIC_AGENT_API_URL || 'https://minf-agent-api.onrender.com' }}
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
