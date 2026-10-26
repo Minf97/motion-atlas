@@ -21,18 +21,12 @@ export const profile = {
 
 export const experience = [
   { company: "Weiling Deep Technology", role: "Agent / Full-stack Engineer", location: "Hangzhou", date: "Dec 2025 — Present", details: [
-    "Help build We0, a multi-agent AI coding, website-building and growth platform, evolving Supervisor, fixed Workflow, single-agent and Main / Design Handoff architectures.",
-    "Designed an event protocol covering 29 event types including text, thinking summaries, tool calls, results, errors, retries, context compression, questions and agent handoffs; Redis Streams + SSE support live updates and replay.",
-    "Built the E2B sandbox, remote filesystem, Shell, Abort, QuickStart and MinIO artifact persistence layer; reduced multi-page design generation from 8–12 minutes to 1–4 minutes through concurrent generation.",
-    "Built full-stack templates with React 18, Razzle, Hono and Supabase. models/*.json is the source of truth for database, CMS, CRUD and API specs, generating SQL, types, validation, services, routes and API_SPEC automatically.",
-    "Extended Wechatsync for multi-channel publishing and built a Doubao account pool plus GEO detection workflow for content growth.",
+    "Help build We0, a multi-agent AI coding, website-building and growth platform, covering agent architecture, live event streams, cloud sandboxes and full-stack templates; concurrent generation reduced multi-page design delivery from 8–12 minutes to 1–4 minutes.",
+    "Also built the publishing, account-pool and GEO detection capabilities that connect product generation with distribution and growth.",
   ] },
   { company: "Pacagen — New York", role: "Software Engineer", location: "New York", date: "Oct 2024 — Apr 2026", details: [
-    "Led a Growth Analytics platform from zero to one around behavior analytics, marketing conversion, A/B testing and business data.",
-    "Designed event schemas and experiment allocation for page views, product views, cart, checkout, purchase, SSR experiments and attribution; visualized results with ECharts.",
-    "Abstracted email delivery and templates, reducing tool spend by about $3,700 per month; internal analytics reduced SaaS costs by at least $1,000 per month.",
-    "Built a RAG support bot with 256–512-token chunks, Embeddings, vector retrieval, BM25, Rerank and Shopify Function Calling for knowledge, order and inventory queries.",
-    "Used RAGAS and human-labeled sets for offline evaluation; migrated the Shopify site to Hydrogen + Remix and built a Kling AI + Coze marketing-video workflow.",
+    "Owned Pacagen's Growth Analytics, experimentation and Shopify Headless work, building a unified path from behavioral events to attribution and reducing SaaS costs by at least $1,000 per month through internal analytics.",
+    "Built a RAG support bot and marketing-content workflow for knowledge, order and handoff scenarios; also reduced email tooling spend by about $3,700 per month through a shared delivery system.",
   ] },
 ]
 

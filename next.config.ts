@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   ...(isGithubPages ? { basePath, assetPrefix: `${basePath}/` } : {}),
-  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  env: { NEXT_PUBLIC_BASE_PATH: basePath, NEXT_PUBLIC_AGENT_API_URL: process.env.NEXT_PUBLIC_AGENT_API_URL ?? "" },
 }
 
 export default nextConfig

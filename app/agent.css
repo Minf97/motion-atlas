@@ -1,0 +1,6 @@
+@import "./agent-styles/panels.css";
+@import "./agent-styles/chat.css";
+@import "./agent-styles/architecture.css";
+@import "./agent-styles/workspace.css";
+@import "./agent-styles/conversation-layout.css";
+@import "./agent-styles/responsive.css";

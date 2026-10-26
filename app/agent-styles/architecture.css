@@ -1,0 +1,300 @@
+.agent-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 22px;
+  padding: 14px 0;
+  border-block: 1px solid var(--agent-line);
+}
+.agent-stat-row > div {
+  padding-left: 16px;
+  border-left: 1px solid var(--agent-line);
+}
+.agent-stat-row > div:first-child {
+  padding-left: 0;
+  border: 0;
+}
+.agent-stat-row > div > span {
+  display: block;
+  color: var(--agent-muted);
+  font-size:12px;
+  margin-bottom: 5px;
+}
+.agent-stat-row strong {
+  font-size: 21px;
+  font-weight: 500;
+}
+.agent-stat-row small {
+  margin-left: 6px;
+  font-size:12px;
+  color: var(--agent-muted);
+  font-weight: 400;
+}
+.agent-section-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.agent-section-bar h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+.agent-section-bar h2 small {
+  font-size:12px;
+  font-weight: 400;
+  color: var(--agent-muted);
+}
+.agent-section-bar > span {
+  color: var(--agent-muted);
+  font-size:12px;
+}
+.agent-architecture-panel {
+  border-top: 1px solid var(--agent-line);
+}
+.agent-architecture-panel > .agent-section-bar {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--agent-line);
+}
+.agent-diagram-scroll {
+  overflow-x: auto;
+}
+.agent-diagram {
+  position: relative;
+  min-width: 460px;
+  height: 276px;
+}
+.agent-page .agent-diagram > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--agent-muted);
+  stroke-width: 1.2;
+}
+.agent-diagram > svg g {
+  stroke: color-mix(in srgb, var(--agent-muted) 55%, var(--agent-line));
+}
+.agent-diagram > svg text {
+  fill: var(--agent-muted);
+  font-size:11px;
+}
+.agent-diagram > svg path[data-live="true"] {
+  stroke: var(--agent-blue);
+  stroke-dasharray: 5 4;
+  animation: agent-flow 1s linear infinite;
+}
+.agent-node {
+  position: absolute;
+  width: 26%;
+  height: 69px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--agent-text);
+  background: var(--agent-surface);
+  text-align: left;
+}
+.agent-node:hover,
+.agent-node.is-selected,
+.agent-node[data-status="running"] {
+  box-shadow: inset 2px 0 var(--agent-blue);
+}
+.agent-node[data-status="running"] {
+  background: var(--agent-blue-soft);
+}
+.agent-node[data-status="completed"] .agent-node-top > svg:first-child {
+  color: var(--agent-green);
+}
+.agent-node[data-status="error"] {
+  background: var(--agent-red-soft);
+  box-shadow: inset 2px 0 var(--agent-red);
+}
+.agent-node-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+}
+.agent-node-index {
+  font-family: var(--agent-mono);
+  font-size: 10px;
+  color: var(--agent-muted);
+}
+.agent-node-state {
+  margin-left: auto;
+  font-style: normal;
+  font-family: var(--agent-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--agent-muted);
+}
+.agent-node-top strong {
+  font-size:13px;
+  font-weight: 500;
+}
+.agent-node-top > svg {
+  width: 12px;
+  height: 12px;
+  color: var(--agent-muted);
+}
+.agent-node[data-status="running"] .agent-node-state { color: var(--agent-blue); }
+.agent-node[data-status="completed"] .agent-node-state { color: var(--agent-green); }
+.agent-node[data-status="error"] .agent-node-state,
+.agent-node[data-status="cancelled"] .agent-node-state { color: var(--agent-red); }
+.agent-node > span:last-child {
+  color: var(--agent-muted);
+  font-size:12px;
+  line-height: 1.2;
+}
+.agent-diagram-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: var(--agent-muted);
+  font-size:11px;
+  border-bottom: 1px solid var(--agent-line);
+}
+.agent-diagram-footer > div {
+  display: flex;
+  gap: 14px;
+}
+.agent-diagram-footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.agent-diagram-footer i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--agent-muted);
+}
+.agent-diagram-footer i[data-status="running"] {
+  background: var(--agent-blue);
+}
+.agent-diagram-footer i[data-status="completed"] {
+  background: var(--agent-green);
+}
+.agent-node-inspector {
+  margin-top: 20px;
+  padding: 14px 0 18px;
+  border-bottom: 1px solid var(--agent-line);
+}
+.agent-inspector-text {
+  line-height: 1.9;
+  font-size:13px;
+  color: var(--agent-muted);
+  margin: 14px 0;
+}
+.agent-inspector-events {
+  margin-top: 14px;
+  display: grid;
+  gap: 9px;
+  max-height: 260px;
+  overflow: auto;
+}
+.agent-inspector-events > div {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) 48px;
+  gap: 10px;
+  font-size:12px;
+}
+.agent-inspector-events > div > span,
+.agent-inspector-events small {
+  color: var(--agent-muted);
+  font-size:12px;
+}
+.agent-inspector-events p {
+  margin: 0;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.agent-inspector-events code {
+  display: block;
+  color: var(--agent-muted);
+  margin: 5px 0;
+  white-space: pre-wrap;
+}
+.agent-inspector-events small {
+  text-align: right;
+}
+.agent-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size:12px;
+  color: var(--agent-blue);
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.agent-text-link svg {
+  width: 12px;
+  height: 12px;
+}
+.agent-node-inspector > .agent-text-link {
+  margin-top: 14px;
+}
+.agent-panel-empty {
+  color: var(--agent-muted);
+  font-size:13px;
+  line-height: 1.8;
+  margin: 22px 0;
+}
+.agent-capabilities {
+  margin-top: 25px;
+}
+.agent-capabilities > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.agent-capabilities h2 {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+.agent-capabilities > div > span {
+  color: var(--agent-muted);
+  margin-left: auto;
+}
+.agent-capabilities > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--agent-line);
+  background: none;
+  text-align: left;
+  color: var(--agent-text);
+}
+.agent-capabilities > button strong {
+  font-size:13px;
+  font-weight: 400;
+}
+.agent-capabilities > button > span {
+  color: var(--agent-muted);
+  margin-left: auto;
+  font-size:12px;
+}
+.agent-capabilities > button > span[data-ready="true"] {
+  color: var(--agent-green);
+}
+.agent-capabilities > button > svg {
+  width: 12px;
+  height: 12px;
+  color: var(--agent-muted);
+}

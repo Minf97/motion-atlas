@@ -4,7 +4,7 @@ export const pageTransitionPlaybackRate = 1.8
 // 限定页面转场
 export function isPortfolioTransition(from: string, to: string) {
   const normalize = (path: string) => path.replace(/\/$/, "") || "/"
-  const pages = ["/", "/resume", "/en", "/en/resume"]
+  const pages = ["/", "/resume", "/agent", "/en", "/en/resume", "/en/agent"]
   const source = normalize(from)
   const target = normalize(to)
   return source !== target && pages.includes(source) && pages.includes(target)

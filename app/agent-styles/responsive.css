@@ -1,0 +1,119 @@
+@media (max-width: 760px) {
+  .agent-site-header {
+    padding: 0 16px;
+  }
+  .agent-site-header .portfolio-header {
+    height: 54px;
+  }
+  .agent-layout, .rail-collapsed .agent-layout {
+    height: calc(100dvh - 54px);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 55px 38px minmax(0, 1fr);
+  }
+  .agent-rail {
+    padding: 9px 12px;
+    flex-direction: row;
+    gap: 8px;
+    border-right: 0;
+    border-bottom: 1px solid var(--agent-line);
+    align-items: center;
+  }
+  .agent-mobile-switch {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--agent-line);
+  }
+  .agent-mobile-switch > button {
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 0;
+    background: none;
+    color: var(--agent-muted);
+    font-size: 11px;
+  }
+  .agent-mobile-switch > button[aria-pressed="true"] {
+    border-bottom-color: var(--agent-blue);
+    color: var(--agent-text);
+  }
+  .agent-rail-brand,
+  .agent-rail-caption,
+  .agent-rail-footer {
+    display: none;
+  }
+  .agent-new-chat {
+    margin: 0;
+    width: 34px;
+    padding: 0;
+    flex: none;
+  }
+  .agent-new-chat > span {
+    display: none;
+  }
+  .agent-section-nav {
+    display: flex;
+    overflow-x: auto;
+    min-width: 0;
+    gap: 3px;
+  }
+  .agent-section-nav button, .rail-collapsed .agent-section-nav button {
+    padding: 10px;
+    white-space: nowrap;
+    width: auto;
+    gap: 5px;
+  }
+  .agent-section-nav button span {
+    display: block;
+    font-size: 11px;
+  }
+  .rail-collapsed .agent-section-nav button span { display:block; }
+  .agent-section-nav button svg,
+  .agent-section-nav small {
+    display: none;
+  }
+  .agent-layout[data-mobile-pane="workspace"] .agent-chat-panel,
+  .agent-layout[data-mobile-pane="chat"] .agent-center {
+    display: none;
+  }
+  .agent-pane-heading {
+    min-height: 46px;
+    padding: 0 16px;
+  }
+  .agent-center-scroll {
+    padding: 22px 16px 38px;
+  }
+  .agent-page .agent-chat-panel {
+    max-width: none;
+  }
+  .agent-page .agent-chat-log {
+    padding: 24px 19px 18px;
+  }
+  .agent-page .agent-chat-composer {
+    margin: 0 15px;
+  }
+  .agent-page .agent-chat-composer textarea {
+    font-size: 16px;
+  }
+  .agent-page .agent-chat-welcome {
+    padding-top: 24px;
+  }
+  .agent-stat-row > div {
+    padding-left: 10px;
+  }
+  .agent-stat-row strong {
+    font-size: 18px;
+  }
+  .agent-connection-alert {
+    margin: 12px 16px 0;
+  }
+  .agent-section-heading h1 {
+    font-size: 21px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-spin,
+  .agent-diagram > svg path[data-live="true"] {
+    animation: none;
+  }
+}

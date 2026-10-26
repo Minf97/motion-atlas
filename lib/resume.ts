@@ -21,18 +21,12 @@ export const profile = {
 
 export const experience = [
   { company: "蔚灵深度科技有限公司", role: "Agent / 全栈工程师", location: "杭州", date: "2025.12 — 至今", details: [
-    "参与 We0 多智能体 AI Coding 建站与增长平台建设，推动 Supervisor、固定 Workflow、单 Agent 以及 Main / Design Handoff 架构演进。",
-    "建立覆盖文本、思考、工具调用、结果、错误、重试、上下文压缩、Question 和 Agent 切换等 29 类事件的协议，基于 Redis Stream + SSE 支持实时推送与历史重放。",
-    "构建 E2B 云沙箱、远程文件系统、Shell、Abort、QuickStart 与 MinIO 产物持久化体系；设计多 Agent 并发生成流程，将多页面设计稿生成耗时从 8–12 分钟缩短至 1–4 分钟。",
-    "基于 React 18、Razzle、Hono、Supabase 建设全栈建站模板，将 models/*.json 作为数据库、CMS、CRUD 与 API Spec 的单一事实源，自动生成 SQL、类型、校验、CRUD、Route 和 API_SPEC。",
-    "基于 Wechatsync 二次开发多渠道内容分发，并搭建豆包账号池与 GEO 自动检测系统，形成内容增长闭环。",
+    "参与 We0 多智能体 AI Coding 建站与增长平台建设，负责 Agent 架构、实时事件流、云沙箱和全栈模板体系；通过并发生成将多页面设计稿耗时从 8–12 分钟缩短至 1–4 分钟。",
+    "同时建设多渠道内容分发、账号池与 GEO 自动检测能力，连接产品生成、发布和增长链路。",
   ] },
   { company: "Pacagen — New York", role: "Software Engineer", location: "New York", date: "2024.10 — 2026.04", details: [
-    "主导 Growth Analytics 平台从 0 到 1 落地，围绕用户行为分析、营销转化、A/B Test 与业务数据构建统一分析入口。",
-    "设计事件模型与实验分流体系，支持页面访问、商品浏览、加购、Checkout、购买、SSR 实验渲染及转化归因，并使用 ECharts 展示分析结果。",
-    "抽象统一邮件接口与模板体系，减少每月约 3,700 美元邮件工具支出；内部化数据分析能力后，每月降低至少 1,000 美元 SaaS 成本。",
-    "构建 RAG 客服机器人：结合 256–512 token 文档切分、Embedding、向量召回、BM25、Rerank 和 Shopify Function Calling，支持知识问答、订单查询与转人工。",
-    "使用 RAGAS 与人工标注集开展离线评估；将 Shopify Template 官网迁移至 Hydrogen + Remix，并基于 Kling AI + Coze 搭建营销视频生成 Workflow。",
+    "负责 Pacagen 的 Growth Analytics、实验分析和 Shopify Headless 业务，从行为事件到转化归因建立统一数据入口，并通过内部化分析能力每月降低至少 1,000 美元 SaaS 成本。",
+    "建设 RAG 客服机器人和营销内容工作流，覆盖知识问答、订单查询与转人工；同时抽象邮件系统，减少每月约 3,700 美元工具支出。",
   ] },
 ]
 

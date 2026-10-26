@@ -11,6 +11,16 @@ npm run dev
 
 打开 `http://localhost:3000`。首次进入会播放 Splash；每个演示页均可单独访问，例如 `/effects/image-reveal`。
 
+## Personal Agent
+
+Agent 页面位于 `/agent/`，需要独立运行 `agent-api/`。前端构建时设置 `NEXT_PUBLIC_AGENT_API_URL` 为已部署的 API 地址；GitHub Pages 使用仓库 Variables 中的同名变量。本地运行时也可使用 `NEXT_PUBLIC_AGENT_API_URL=http://localhost:8000 npm run dev`。
+
+## Bilibili 同时在看榜
+
+排行榜位于 `/bilibili/`，英文页面位于 `/en/bilibili/`，复用 `agent-api/`。后台采集器从 B 站科技（188）和生活（160）分区排行榜各发现最多 100 条候选，按单队列逐条读取播放器在线人数并写入 Redis；网页刷新只读取 Redis。每条视频显示最近成功观测时间，超过新鲜度窗口的数据会从榜单排除。手动刷新只重新读取缓存，不会触发 B 站请求。接口为 `GET /bilibili/ranking?category=technology|life`，缩略图经限制在 `*.hdslb.com` 的图片代理提供。
+
+Railway 后端需要关联 Redis 服务并提供 `REDIS_URL`。采集配置可选：`BILIBILI_SAMPLE_INTERVAL_SECONDS`（默认每个上游 HTTP 请求间隔 4 秒）、`BILIBILI_DISCOVERY_INTERVAL_SECONDS`（默认 900 秒）、`BILIBILI_COOLDOWN_SECONDS`（默认 1800 秒）、`BILIBILI_MAX_AGE_SECONDS`（默认 1800 秒）。频率不代表 B 站承诺的安全阈值；遇到 `-352/-412/-429` 或 HTTP 403/412/429 时采集器停止请求并进入冷却。
+
 ## GitHub Pages
 
 推送到 `main` 后，`.github/workflows/deploy-pages.yml` 会自动构建并发布静态站点。仓库需要在 Settings → Pages → Source 中选择 GitHub Actions；项目站点地址为 `https://<用户名>.github.io/motion-atlas/`。
