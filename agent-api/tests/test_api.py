@@ -20,6 +20,18 @@ def test_chat_stream_exposes_real_events(monkeypatch):
     assert events[1]["query"] == "Python version?"
 
 
+def test_cors_allows_github_pages_origin():
+    response = TestClient(app).options(
+        "/workspace",
+        headers={
+            "Origin": "https://minf97.github.io",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == "https://minf97.github.io"
+
+
 def test_evaluation_rejects_unknown_provider():
     response = TestClient(app).post("/evaluate?model=unknown")
     assert response.status_code == 422

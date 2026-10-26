@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: minf-agent-api
+    runtime: docker
+    rootDir: agent-api
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_BASE_URL
+        value: https://api.deepseek.com
+      - key: DEEPSEEK_MODEL
+        value: deepseek-chat
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: AGENT_ALLOWED_ORIGINS
+        value: https://minf97.github.io,http://localhost:3457
+      - key: BILIBILI_SAMPLE_INTERVAL_SECONDS
+        value: "4"
+      - key: BILIBILI_DISCOVERY_INTERVAL_SECONDS
+        value: "900"
+      - key: BILIBILI_COOLDOWN_SECONDS
+        value: "1800"
+      - key: BILIBILI_MAX_AGE_SECONDS
+        value: "1800"
