@@ -21,6 +21,7 @@ export type AgentEvaluation = {
   type?: "case" | "summary"
   id: string; question?: string; passed?: boolean; checks?: Record<string, boolean>; tools?: string[]
   scores?: Record<string, number>; trace?: { events: number; tool_calls: number; evidence: number; answer_chars: number }
+  error?: string
   run_id: string; model: AgentModel; duration_ms: number
   cases?: number; pass_rate?: number; overall_score?: number
 }

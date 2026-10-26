@@ -14,7 +14,19 @@ async def run_cases(workflow, provider: str):
     results = []
     for case in CASES:
         start = time.perf_counter()
-        events = [event async for event in workflow.stream(case["question"], provider)]
+        try:
+            events = [event async for event in workflow.stream(case["question"], provider)]
+        except Exception as error:
+            duration_ms = round((time.perf_counter() - start) * 1000)
+            result = {"type": "case", "id": case["id"], "run_id": run_id, "model": provider,
+                      "question": case["question"], "passed": False,
+                      "checks": {"correct_tool": False, "has_evidence": False, "answered": False, "cited_source": False},
+                      "scores": {"tool_selection": 0.0, "evidence": 0.0, "grounded_citation": 0.0, "answer_quality": 0.0},
+                      "tools": [], "trace": {"events": 0, "tool_calls": 0, "evidence": 0, "answer_chars": 0},
+                      "error": str(error), "duration_ms": duration_ms}
+            results.append(result)
+            yield result
+            continue
         tools = [event["content"] for event in events if event["type"] == "tool" and event.get("status") == "completed"]
         sources = [source for event in events if event["type"] == "evidence" for source in event["sources"]]
         answers = [event["content"] for event in events if event["type"] == "answer"]
