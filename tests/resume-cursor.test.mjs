@@ -1,10 +1,22 @@
 import test from "node:test"
 import assert from "node:assert/strict"
+import { readFileSync } from "node:fs"
 import { cursorGeometry, cursorSpring } from "../lib/resume-cursor.ts"
 import * as zh from "../lib/resume.ts"
 import * as en from "../lib/resume-en.ts"
 
 const rect = { left: 100, top: 200, width: 100, height: 30 }
+
+test("cursor snaps into place before appearing on entry and re-entry", () => {
+  const source = readFileSync(new URL("../components/resume-cursor.tsx", import.meta.url), "utf8")
+  const firstPosition = source.indexOf("if (!positioned)")
+  const reveal = source.indexOf("setVisible(true)")
+  assert.ok(firstPosition > 0 && firstPosition < reveal)
+  assert.match(source.slice(firstPosition, reveal), /springX.jump\(geometry.x\); springY.jump\(geometry.y\)/)
+  assert.match(source, /const leave = \(\) => \{[^}]*positioned = false[^}]*classList.remove\("resume-custom-cursor"\)/s)
+  assert.doesNotMatch(source, /initial=\{\{[^}]*scale: 3/)
+  assert.doesNotMatch(source, /classList.toggle\("resume-custom-cursor", query.matches\)/)
+})
 
 test("cursor matches Lawted spring and magnetic geometry", () => {
   assert.deepEqual(cursorSpring, { damping: 20, stiffness: 300, mass: 0.5 })

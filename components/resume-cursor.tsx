@@ -20,9 +20,12 @@ export function ResumeCursor() {
   useEffect(() => {
     const page = document.querySelector<HTMLElement>(".resume-page")!
     const query = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)")
+    let positioned = false
     const sync = () => {
       setEnabled(query.matches)
-      page.classList.toggle("resume-custom-cursor", query.matches)
+      positioned = false
+      setVisible(false)
+      page.classList.remove("resume-custom-cursor")
     }
     sync()
     query.addEventListener("change", sync)
@@ -41,9 +44,8 @@ export function ResumeCursor() {
       if (!query.matches || event.pointerType === "touch") return
       const target = event.target
       if (!(target instanceof HTMLElement) || !page.contains(target)) {
-        reset(); setVisible(false); setCaption(""); return
+        leave(); return
       }
-      setVisible(true)
       const marked = target.closest<HTMLElement>("[data-cursor]")
       const interactive = target.closest<HTMLElement>("a, button, summary")
       const text = target.childNodes.length === 1 && target.firstChild?.nodeType === Node.TEXT_NODE && target.textContent?.trim()
@@ -57,6 +59,13 @@ export function ResumeCursor() {
       }
       const geometry = cursorGeometry(mode, event.clientX, event.clientY, bounds, parseFloat(getComputedStyle(element).lineHeight))
       x.set(geometry.x); y.set(geometry.y)
+      // 首次定位不插值
+      if (!positioned) {
+        springX.jump(geometry.x); springY.jump(geometry.y)
+        positioned = true
+      }
+      page.classList.add("resume-custom-cursor")
+      setVisible(true)
       setShape({ width: geometry.width, height: geometry.height, radius: geometry.radius, block: mode === "block" })
       if (active.current) {
         element.style.transform = `translate(${geometry.shiftX}px, ${geometry.shiftY}px)`
@@ -64,7 +73,11 @@ export function ResumeCursor() {
       }
       setCaption(target.closest<HTMLElement>("[data-voice]")?.dataset.voice ?? "")
     }
-    const leave = () => { reset(); setVisible(false); setCaption("") }
+    const leave = () => {
+      reset(); setVisible(false); setCaption(""); setPressed(false)
+      positioned = false
+      page.classList.remove("resume-custom-cursor")
+    }
     const down = () => setPressed(true)
     const up = () => setPressed(false)
     const scroll = () => {
@@ -87,11 +100,11 @@ export function ResumeCursor() {
       window.removeEventListener("blur", leave)
       window.removeEventListener("scroll", scroll)
     }
-  }, [x, y])
+  }, [x, y, springX, springY])
 
   return <>
     <AnimatePresence>{enabled && <motion.div className="resume-pointer" aria-hidden="true"
-      style={{ left: springX, top: springY }} initial={{ opacity: 0, scale: 3 }} exit={{ opacity: 0 }}
+      style={{ left: springX, top: springY }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
       animate={{ opacity: visible ? 1 : 0, scale: pressed ? 0.9 : 1, width: shape.width, height: shape.height, borderRadius: shape.radius, backgroundColor: shape.block ? "rgba(140,140,140,0.2)" : "rgba(140,140,140,0.65)" }} />}</AnimatePresence>
     <AnimatePresence>{enabled && caption && <motion.div key={caption} className="resume-caption" aria-hidden="true"
       initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} transition={{ duration: 0.3 }}>
