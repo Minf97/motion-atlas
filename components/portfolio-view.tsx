@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { effectDescriptions } from "@/lib/effects-en"
 import { effects, type EffectGroup } from "@/lib/effects"
+import { splineWorks } from "@/lib/spline-works"
 
 const categories: {
   id: string
@@ -54,7 +55,7 @@ export function PortfolioView({ english = false }: { english?: boolean }) {
             aria-labelledby={`${category.id}-title`}
           >
             <div className="portfolio-category-heading">
-              <span>{category.number} / 03</span>
+              <span>{category.number} / 04</span>
               <div>
                 <h2 id={`${category.id}-title`}>{category.title}</h2>
                 <p>
@@ -105,6 +106,22 @@ export function PortfolioView({ english = false }: { english?: boolean }) {
             </div>
           </section>
         ))}
+        <section className="portfolio-category" id="spline" aria-labelledby="spline-title">
+          <div className="portfolio-category-heading"><span>04 / 04</span><h2 id="spline-title">Spline</h2></div>
+          <div className="portfolio-category-content">
+            <div className="portfolio-group">
+              <h3><span>3D Works</span>{!english && <small>三维作品</small>}</h3>
+              <div className="portfolio-case-list">
+                {splineWorks.map(work => <Link className="portfolio-case" href={`${english ? "/en" : ""}/spline`} key={work.id}>
+                  <span className="portfolio-case-number">{work.number}</span>
+                  <span className="portfolio-case-title">{english ? work.titleEn : work.title}</span>
+                  <span className="portfolio-case-description">{english ? "Made in Spline" : "使用 Spline 制作"}</span>
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>)}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <footer className="portfolio-footer">

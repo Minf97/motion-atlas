@@ -8,6 +8,7 @@ export function SiteHeader({ english = false, path = "" }: { english?: boolean; 
     <PageTransitionLink href={home} className="portfolio-name">{english ? "Minf" : "Minf"}<span> / Frontend Engineer</span></PageTransitionLink>
     <nav aria-label={english ? "Main navigation" : "主导航"}>
       <PageTransitionLink href={home}>{english ? "Collections" : "合集"}</PageTransitionLink>
+      <PageTransitionLink href={`${english ? "/en" : ""}/spline`}>Spline</PageTransitionLink>
       <PageTransitionLink href={`${english ? "/en" : ""}/resume`}>{english ? "Resume" : "简历"}</PageTransitionLink>
       <PageTransitionLink href={`${english ? "/en" : ""}/agent`}>{english ? "Agent" : "Agent"}</PageTransitionLink>
       <PageTransitionLink href={`${english ? "/en" : ""}/bilibili`}>{english ? "Live rank" : "同时在看"}</PageTransitionLink>
