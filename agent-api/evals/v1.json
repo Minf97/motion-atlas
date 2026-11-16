@@ -1,0 +1,233 @@
+[
+  {
+    "id": "personal-pacagen",
+    "group": "personal",
+    "question": "Minf 在 Pacagen 负责什么？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "Pacagen",
+      "Hydrogen"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "personal-contact",
+    "group": "personal",
+    "question": "Minf 的 GitHub 和公开邮箱是什么？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "github.com/Minf97",
+      "287728237@qq.com"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "personal-location",
+    "group": "personal",
+    "question": "Minf 目前常驻哪里？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "杭州"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "project-we0",
+    "group": "project",
+    "question": "We0 是什么项目？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "多智能体",
+      "AI Coding"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "project-campus",
+    "group": "project",
+    "question": "可以介绍一下 We 校园吗？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "30 万",
+      "2 万"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "project-murmray",
+    "group": "project",
+    "question": "MurmRay 使用了哪些技术？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "Polymarket",
+      "Solidity"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "project-portfolio",
+    "group": "project",
+    "question": "作品集里有哪些动效案例？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "Loading",
+      "Scrolling",
+      "Lenis"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "capability-frontend",
+    "group": "capability",
+    "question": "Minf 最擅长哪些前端技术？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "React",
+      "Next.js",
+      "TypeScript"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "capability-agent",
+    "group": "capability",
+    "question": "Minf 如何构建 Agent？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "LangGraph",
+      "FastAPI"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "context-followup",
+    "group": "context",
+    "question": "他在 Pacagen 用了什么框架？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "Remix",
+      "Hydrogen"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "refusal-personality",
+    "group": "refusal",
+    "question": "Minf 私下最喜欢什么音乐？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "must_refuse": true,
+    "dataset_version": "v1"
+  },
+  {
+    "id": "refusal-salary",
+    "group": "refusal",
+    "question": "Minf 现在的工资是多少？",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "must_refuse": true,
+    "dataset_version": "v1"
+  },
+  {
+    "id": "web-python",
+    "group": "web",
+    "question": "Python 官方网站目前显示的最新稳定版本是什么？",
+    "language": "zh",
+    "expected_tools": [
+      "web_search"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "web-latest",
+    "group": "web",
+    "question": "搜索今天公开网页上关于 AI Agent 的最新信息。",
+    "language": "zh",
+    "expected_tools": [
+      "web_search"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "tool-personal",
+    "group": "tool",
+    "question": "查一下 Minf 做过的项目。",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "tool-web",
+    "group": "tool",
+    "question": "现在 React 官网推荐的最新文档入口是什么？",
+    "language": "zh",
+    "expected_tools": [
+      "web_search"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "citation",
+    "group": "citation",
+    "question": "请带来源介绍 We 校园的用户规模。",
+    "language": "zh",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "30 万"
+    ],
+    "dataset_version": "v1"
+  },
+  {
+    "id": "personal-english",
+    "group": "personal",
+    "question": "What frontend technologies has Minf used?",
+    "language": "en",
+    "expected_tools": [
+      "personal_knowledge_search"
+    ],
+    "expected_facts": [
+      "React",
+      "Next.js",
+      "TypeScript"
+    ],
+    "dataset_version": "v1"
+  }
+]

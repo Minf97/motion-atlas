@@ -11,7 +11,7 @@ import { AgentOverview } from "@/components/agent/overview"
 import { AgentPanels } from "@/components/agent/panels"
 import { AgentChat } from "@/components/agent/chat"
 
-const icons = { Overview: LayoutDashboard, Loop: Workflow, Memory: Brain, Tool: Wrench, Database, Settings }
+const icons = { Overview: LayoutDashboard, Loop: Workflow, Evaluation: Workflow, Memory: Brain, Tool: Wrench, Database, Settings }
 
 // 三栏同时展示运行态
 export function AgentView({ english = false }: { english?: boolean }) {
@@ -20,7 +20,7 @@ export function AgentView({ english = false }: { english?: boolean }) {
   const [collapsed, setCollapsed] = useState(false)
   const [mobilePane, setMobilePane] = useState<"workspace" | "chat">("workspace")
   const inspect = (id: string) => { agent.setActiveId(id); setSection("Overview"); setMobilePane("workspace") }
-  const sectionLabel = (item: AgentSection) => item === "Overview" ? (english ? "Overview" : "总览") : item === "Loop" ? "Loop" : item === "Memory" ? (english ? "Memory" : "记忆") : item === "Tool" ? (english ? "Tool" : "工具") : item === "Database" ? (english ? "Database" : "数据库") : (english ? "Settings" : "设置")
+  const sectionLabel = (item: AgentSection) => item === "Overview" ? (english ? "Overview" : "总览") : item === "Loop" ? "Loop"  : item === "Evaluation" ? "Evaluation" : item === "Memory" ? (english ? "Memory" : "记忆") : item === "Tool" ? (english ? "Tool" : "工具") : item === "Database" ? (english ? "Database" : "数据库") : (english ? "Settings" : "设置")
 
   return <main className={cn("agent-page", collapsed && "rail-collapsed")} lang={english ? "en" : "zh-CN"}>
     <div className="agent-site-header"><SiteHeader english={english} path="/agent" /></div>
@@ -29,7 +29,7 @@ export function AgentView({ english = false }: { english?: boolean }) {
         <div className="agent-rail-brand"><span>Minf <small>Agent</small></span><Button variant="ghost" size="icon-sm" onClick={() => setCollapsed(!collapsed)} aria-label={english ? "Toggle sidebar" : "展开或收起侧栏"}>{collapsed ? <PanelLeftOpen /> : <PanelLeftClose />}</Button></div>
         <Button variant="outline" className="agent-new-chat" onClick={agent.newChat} disabled={agent.loading || agent.evaluating}><CirclePlus /><span>{english ? "New chat" : "新对话"}</span></Button>
         <div className="agent-rail-caption">{english ? "WORKSPACE" : "工作区"}</div>
-        <nav className="agent-section-nav">{agentSections.map(item => {
+        <nav className="agent-section-nav">{([...agentSections.slice(0, 2), "Evaluation", ...agentSections.slice(2)] as AgentSection[]).map(item => {
           const Icon = icons[item]
           return <button key={item} className={cn(section === item && "is-active")} onClick={() => { setSection(item); setMobilePane("workspace") }} aria-current={section === item ? "page" : undefined} title={sectionLabel(item)}><Icon /><span>{sectionLabel(item)}</span>{item === "Tool" && agent.workspace && <small>{agent.workspace.tools.length}</small>}</button>
         })}</nav>

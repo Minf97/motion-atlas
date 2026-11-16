@@ -84,6 +84,9 @@
 .agent-eval-trace { display:block; color:var(--agent-muted); margin-top:12px; font:11px var(--agent-mono),monospace; }
 .agent-eval-row [data-pass=true] { color:var(--agent-green); }
 .agent-eval-row [data-pass=false] { color:var(--agent-red); }
+.agent-eval-trace-details { display:grid; gap:5px; margin:12px 0; padding:10px; background:var(--agent-surface); }
+.agent-eval-trace-details p { margin:0; font-size:11px; }
+.agent-eval-trace-details code { display:block; margin-top:3px; overflow-wrap:anywhere; }
 .agent-citations { margin-top:18px; }
 .agent-citations>span { color:var(--agent-muted); font-size:13px; }
 .agent-citations>div { display:grid; gap:6px; margin-top:7px; }

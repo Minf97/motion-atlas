@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { parseAgentEvent, type AgentEvaluation, type AgentModel, type AgentTurn, type AgentWorkspace } from "@/lib/agent"
 import { conversationHistory } from "@/lib/agent-workspace"
 import { readEventStream } from "@/lib/agent-stream"
+import { readEvaluationRuns, saveEvaluationRun, saveFeedback, type EvaluationRun } from "@/lib/agent-evaluation-storage"
 
 export const agentApiUrl = process.env.NEXT_PUBLIC_AGENT_API_URL?.replace(/\/$/, "")
 
@@ -18,6 +19,9 @@ export function useAgent(english: boolean) {
   const [evaluations, setEvaluations] = useState<AgentEvaluation[]>([])
   const [evaluationSummary, setEvaluationSummary] = useState<AgentEvaluation | null>(null)
   const [evaluating, setEvaluating] = useState(false)
+  const [evaluationRuns, setEvaluationRuns] = useState<EvaluationRun[]>([])
+  const [evaluationProgress, setEvaluationProgress] = useState(0)
+  const [feedbackResults, setFeedbackResults] = useState<Record<string, { result?: Record<string, unknown>; error?: string; loading?: boolean }>>({})
   const [evaluationError, setEvaluationError] = useState("")
   const controller = useRef<AbortController | null>(null)
   const evaluationController = useRef<AbortController | null>(null)
@@ -54,6 +58,7 @@ export function useAgent(english: boolean) {
   }, [english])
 
   useEffect(() => {
+    setEvaluationRuns(readEvaluationRuns())
     void connect()
     return () => { workspaceController.current?.abort(); controller.current?.abort(); evaluationController.current?.abort() }
   }, [connect])
@@ -100,17 +105,19 @@ export function useAgent(english: boolean) {
     setEvaluating(true)
     setEvaluations([])
     setEvaluationSummary(null)
+    setEvaluationProgress(0)
     setEvaluationError("")
     try {
       if (!agentApiUrl) throw new Error(english ? "Agent API is not configured." : "Agent API 尚未配置。")
-      const response = await fetch(agentApiUrl + "/evaluate?model=" + model, { method: "POST", signal: abort.signal })
+      const response = await fetch(agentApiUrl + "/evaluate?model=" + model + "&dataset_version=v1", { method: "POST", signal: abort.signal })
+      const completedCases: AgentEvaluation[] = []
       await readEventStream(response, frame => {
         const line = frame.split("\n").find(line => line.startsWith("data:"))
         if (!line) return
         const result = JSON.parse(line.slice(5)) as AgentEvaluation & { error?: string }
         if (result.error) throw new Error(result.error)
-        if (result.type === "summary") setEvaluationSummary(result)
-        else setEvaluations(current => [...current, result])
+        if (result.type === "summary") { setEvaluationSummary(result); setEvaluationRuns(saveEvaluationRun({ saved_at: new Date().toISOString(), cases: completedCases, summary: result })) }
+        else { completedCases.push(result); setEvaluations(current => [...current, result]); setEvaluationProgress(current => current + 1) }
       })
     } catch (error) {
       if (!abort.signal.aborted) setEvaluationError(error instanceof Error ? error.message : String(error))
@@ -120,8 +127,28 @@ export function useAgent(english: boolean) {
     }
   }
 
+  async function submitFeedback(turn: AgentTurn, rating: "thumbs_up" | "thumbs_down", reason?: string) {
+    const id = turn.id
+    setFeedbackResults(current => ({ ...current, [id]: { loading: true } }))
+    try {
+      if (!agentApiUrl) throw new Error("Agent API is not configured")
+      const answer = turn.events.filter(event => event.type === "answer").map(event => event.content).join("")
+      const feedback = { saved_at: new Date().toISOString(), turn_id: id, question: turn.question, answer, events: turn.events, rating, reason }
+      const response = await fetch(agentApiUrl + "/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: turn.model, question: turn.question, answer, events: turn.events, rating, reason }) })
+      if (!response.ok) throw new Error("Feedback API returned " + response.status)
+      const result = await response.json() as Record<string, unknown>
+      setFeedbackResults(current => ({ ...current, [id]: { result } }))
+      saveFeedback({ ...feedback, judge: result })
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      const answer = turn.events.filter(event => event.type === "answer").map(event => event.content).join("")
+      saveFeedback({ saved_at: new Date().toISOString(), turn_id: id, question: turn.question, answer, events: turn.events, rating, reason, error: message })
+      setFeedbackResults(current => ({ ...current, [id]: { error: message } }))
+    }
+  }
+
   return { model, setModel, turns, active, setActiveId, workspace, connection, connectionError, connect, loading,
     send, stop: () => controller.current?.abort(), newChat: () => { if (!controller.current) { setTurns([]); setActiveId("") } },
-    evaluations, evaluationSummary, evaluating, evaluationError, evaluate }
+    evaluations, evaluationSummary, evaluating, evaluationError, evaluationProgress, evaluationRuns, feedbackResults, evaluate, submitFeedback }
 }
 export type AgentController = ReturnType<typeof useAgent>

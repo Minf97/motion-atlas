@@ -53,6 +53,10 @@
 .agent-answer-actions>button:last-child { border:0; background:none; padding:0; color:var(--agent-muted); font-size:12px; margin-left:auto; }
 .agent-answer-actions>button:last-child:hover { color:var(--agent-blue); }
 .agent-answer-actions [data-slot=button] { color:var(--agent-muted); }
+.agent-judge-result { margin-top:10px; font-size:11px; }
+.agent-judge-result summary { cursor:pointer; color:var(--agent-blue); }
+.agent-judge-result div { display:flex; flex-wrap:wrap; gap:8px; margin-top:7px; }
+.agent-judge-result p { flex-basis:100%; color:var(--agent-muted); line-height:1.7; }
 .agent-chat-composer { margin:0 14px; padding:13px 13px 10px; border-radius:18px; background:var(--agent-input); border:1px solid transparent; }
 .agent-chat-composer:focus-within { border-color:color-mix(in srgb,var(--agent-blue) 55%,transparent); }
 .agent-chat-composer textarea { display:block; border:0; resize:none; outline:none!important; width:100%; background:none; color:var(--agent-text); padding:0; font-size:13px; line-height:1.7; min-height:63px; max-height:150px; }

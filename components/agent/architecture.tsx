@@ -35,8 +35,8 @@ export function Architecture({ turn, selected, onSelect, english }: { turn?: Age
         <path d="M299 199 V154 H457 V127" className="agent-return-edge" data-live={states.model === "running" && (turn?.events.some(event => event.type === "evidence") ?? false)} />
         <path d="M447 60 V30 H105 V198" className="agent-answer-edge" data-live={states.answer === "running"} />
       </g>
-      <text x="266" y="146">{english ? "observe → decide" : "观察结果 → 再次决策"}</text>
-      <text x="261" y="21">{english ? "when ready, answer" : "证据充分后回答"}</text>
+      {/* <text x="266" y="146">{english ? "observe → decide" : "观察结果 → 再次决策"}</text> */}
+      {/* <text x="261" y="21">{english ? "when ready, answer" : "证据充分后回答"}</text> */}
     </svg>
     {Object.entries(stageInfo).map(([name, info], index) => {
       const stage = name as AgentStage

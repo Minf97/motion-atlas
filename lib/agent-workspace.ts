@@ -1,7 +1,7 @@
 import type { AgentEvent, AgentStage, AgentTurn } from "./agent"
 
 export const agentSections = ["Overview", "Loop", "Memory", "Tool", "Database", "Settings"] as const
-export type AgentSection = typeof agentSections[number]
+export type AgentSection = typeof agentSections[number] | "Evaluation"
 export const agentStages: AgentStage[] = ["input", "context", "model", "tools", "observe", "answer"]
 
 // 推导当前链路

@@ -37,6 +37,35 @@ def test_evaluation_rejects_unknown_provider():
     assert response.status_code == 422
 
 
+def test_evaluation_rejects_unknown_dataset_version():
+    response = TestClient(app).post("/evaluate?dataset_version=v99")
+    assert response.status_code == 422
+
+
+def test_feedback_returns_judge_result(monkeypatch):
+    async def fake_respond(provider, messages, allow_tools=True):
+        return {"content": json.dumps({"correctness": .9, "relevance": .8, "evidence": .7, "tool_trajectory": .6, "judge_reason": "grounded"})}
+
+    monkeypatch.setattr(workflow.router, "respond", fake_respond)
+    response = TestClient(app).post("/feedback", json={
+        "model": "deepseek", "question": "Q", "answer": "A", "rating": "thumbs_up",
+    })
+    assert response.status_code == 200
+    assert response.json()["overall"] == .78
+
+
+def test_feedback_reports_invalid_judge_output(monkeypatch):
+    async def fake_respond(provider, messages, allow_tools=True):
+        return {"content": "not json"}
+
+    monkeypatch.setattr(workflow.router, "respond", fake_respond)
+    response = TestClient(app).post("/feedback", json={
+        "model": "deepseek", "question": "Q", "answer": "A", "rating": "thumbs_down",
+    })
+    assert response.status_code == 502
+    assert response.json()["detail"] == "Judge returned invalid JSON"
+
+
 def test_bilibili_ranking_rejects_unknown_category():
     response = TestClient(app).get("/bilibili/ranking?category=music")
     assert response.status_code == 422

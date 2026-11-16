@@ -98,11 +98,11 @@ class AgentWorkflow:
         ]
         for event in initial_events:
             sequence += 1
-            yield {**event, "run_id": run_id, "sequence": sequence, "elapsed_ms": round((time.perf_counter() - start) * 1000)}
+            yield {**event, "run_id": run_id, "span_id": f"{run_id}:{sequence}", "parent_span_id": run_id if sequence > 1 else None, "sequence": sequence, "model": provider, "duration_ms": round((time.perf_counter() - start) * 1000), "elapsed_ms": round((time.perf_counter() - start) * 1000)}
         async for mode, update in self.graph.astream(initial, stream_mode=["custom", "updates"]):
             if mode == "custom":
                 sequence += 1
-                yield {**update, "run_id": run_id, "sequence": sequence, "elapsed_ms": round((time.perf_counter() - start) * 1000)}
+                yield {**update, "run_id": run_id, "span_id": f"{run_id}:{sequence}", "parent_span_id": run_id, "sequence": sequence, "model": provider, "duration_ms": round((time.perf_counter() - start) * 1000), "elapsed_ms": round((time.perf_counter() - start) * 1000)}
             elif "decide" in update and not update["decide"].get("calls"):
                 answer_events = [
                     stage("answer", "running", "Preparing the answer"),
@@ -111,4 +111,4 @@ class AgentWorkflow:
                 ]
                 for event in answer_events:
                     sequence += 1
-                    yield {**event, "run_id": run_id, "sequence": sequence, "elapsed_ms": round((time.perf_counter() - start) * 1000)}
+                    yield {**event, "run_id": run_id, "span_id": f"{run_id}:{sequence}", "parent_span_id": run_id if sequence > 1 else None, "sequence": sequence, "model": provider, "duration_ms": round((time.perf_counter() - start) * 1000), "elapsed_ms": round((time.perf_counter() - start) * 1000)}

@@ -4,17 +4,17 @@ import asyncio
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
 from .config import get_settings
 from .model import ModelRouter
 from .knowledge import VectorStore, load_chunks
-from .schemas import ChatRequest
+from .schemas import ChatRequest, FeedbackRequest
 from .workflow import AgentWorkflow
 from .tools import AgentTools
-from .evaluation import run_cases
+from .evaluation import run_cases, load_dataset, judge_feedback
 from .workspace import workspace_snapshot
 from .bilibili import router as bilibili_router
 from .bilibili_store import BilibiliStore
@@ -82,13 +82,25 @@ async def chat(request: ChatRequest) -> StreamingResponse:
 
 
 @app.post("/evaluate")
-async def evaluate(model: str = Query(default="openai", pattern="^(openai|deepseek)$")) -> StreamingResponse:
+async def evaluate(model: str = Query(default="openai", pattern="^(openai|deepseek)$"), dataset_version: str = Query(default="v1", pattern="^v[0-9]+$")) -> StreamingResponse:
 
+    try:
+        load_dataset(dataset_version)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
     async def events():
         try:
-            async for result in run_cases(workflow, model):
+            async for result in run_cases(workflow, model, dataset_version):
                 yield f"data: {json.dumps(result, ensure_ascii=False)}\n\n"
         except Exception as error:
             yield f"data: {json.dumps({'error': str(error)}, ensure_ascii=False)}\n\n"
 
     return StreamingResponse(events(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
+@app.post("/feedback")
+async def feedback(request: FeedbackRequest) -> dict:
+    try:
+        return await judge_feedback(workflow.router, request)
+    except ValueError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error

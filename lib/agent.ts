@@ -16,11 +16,23 @@ export type AgentEvent = {
   elapsed_ms?: number
   run_id?: string
   sequence?: number
+  span_id?: string
+  parent_span_id?: string
+  model?: AgentModel
+  dataset_version?: string
+  error?: string
 }
 export type AgentEvaluation = {
   type?: "case" | "summary"
-  id: string; question?: string; passed?: boolean; checks?: Record<string, boolean>; tools?: string[]
-  scores?: Record<string, number>; trace?: { events: number; tool_calls: number; evidence: number; answer_chars: number }
+  group?: string
+  dataset_version?: string
+  failure_categories?: string[]
+  sources?: AgentSource[]
+  average_latency_ms?: number
+  failure_counts?: Record<string, number>
+  tool_error_rate?: number
+  id: string; question?: string; passed?: boolean; checks?: Record<string, boolean>; expected_tools?: string[]; tools?: string[]
+  scores?: Record<string, number>; trace?: { events: number; tool_calls: number; evidence: number; answer_chars: number; spans?: AgentEvent[] }
   error?: string
   run_id: string; model: AgentModel; duration_ms: number
   cases?: number; pass_rate?: number; overall_score?: number

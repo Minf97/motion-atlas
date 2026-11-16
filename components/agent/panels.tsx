@@ -6,11 +6,13 @@ import { splitAgentEvents } from "@/lib/agent"
 import { agentApiUrl, type AgentController } from "./use-agent"
 import { ToolHistory } from "./tool-history"
 import { LoopPanel } from "./loop"
+import { EvaluationPanel } from "./evaluation"
 
 export function AgentPanels({ section, agent, english }: { section: AgentSection; agent: AgentController; english: boolean }) {
   const [query, setQuery] = useState("")
   const knowledge = agent.workspace?.knowledge ?? []
   if (section === "Loop") return <LoopPanel agent={agent} english={english} />
+  if (section === "Evaluation") return <EvaluationPanel agent={agent} english={english} />
   if (section === "Tool") return <>
     <div className="agent-panel-intro"><Wrench /><h2>{english ? "Tool registry" : "工具注册表"}</h2><p>{english ? "The model selects tools. The server executes them and returns evidence." : "模型选择工具，服务端执行调用，再将证据送回模型。"}</p></div>
     {agent.workspace?.tools.map(tool => <details key={tool.name} className="agent-registry-item"><summary><div><strong>{tool.name}</strong><span>{tool.name === "web_search" ? (english ? "External facts · Tavily" : "外部事实 · Tavily") : (english ? "Reviewed knowledge · TF-IDF" : "已审核资料 · TF-IDF")}</span></div><span className="agent-config-status" data-ready={tool.configured}>{tool.configured ? (english ? "Ready" : "可用") : (english ? "Not configured" : "未配置")}</span></summary><p>{tool.description}</p><pre>{JSON.stringify(tool.parameters, null, 2)}</pre></details>)}

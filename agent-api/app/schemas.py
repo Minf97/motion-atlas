@@ -22,3 +22,12 @@ class Source(BaseModel):
     kind: str
     url: str
     excerpt: str
+
+
+class FeedbackRequest(BaseModel):
+    model: ModelName
+    question: str = Field(min_length=1, max_length=1000)
+    answer: str = Field(min_length=1, max_length=20000)
+    events: list[dict] = Field(default_factory=list, max_length=200)
+    rating: Literal["thumbs_up", "thumbs_down"]
+    reason: str | None = Field(default=None, max_length=500)
