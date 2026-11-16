@@ -66,7 +66,7 @@ export function Entrance({ children }: { children: React.ReactNode }) {
       <button ref={button} className="entrance-enter" disabled={phase !== "ready"} onClick={enter} aria-label={english ? "Enter portfolio" : "进入作品集"}>
         <ArrowRight aria-hidden="true" />
       </button>
-      <span className="entrance-status" role="status">{phase === "loading" ? (english ? "Preparing the details" : "正在准备细节") : (english ? "Enter" : "进入")}</span>
+      <span className="entrance-status" role="status">{phase === "loading" ? "Loading" : ""}</span>
     </div>}
   </>
 }
