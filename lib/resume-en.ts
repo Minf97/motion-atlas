@@ -12,12 +12,22 @@ export const profile = {
   portfolio: "https://minf97.github.io/motion-atlas/",
   summary: "Agent engineering, ecommerce growth analytics and full-stack product development, with a focus on reliable and practical LLM applications.",
   skills: [
-    { title: "Agent Engineering", items: "Agent Loop, Tool Calling, Handoff, Workflow, Context Engineering, session persistence, context compression, tool recovery, multi-model routing" },
-    { title: "RAG & Evaluation", items: "document parsing, Embeddings, vector retrieval, BM25, Rerank, context injection, RAGAS, human-labeled sets, bad-case feedback" },
-    { title: "Data Products", items: "event models, behavior analytics, conversion funnels, A/B testing, attribution, ECharts, Supabase, PostgreSQL, SQL" },
-    { title: "Full-stack", items: "Python, FastAPI, LangGraph, TypeScript, React, Next.js, Hono, Redis, SSE, Supabase" },
+    { title: "Programming Languages", items: ["JavaScript", "TypeScript", "Python"] },
+    { title: "Design Tools", items: ["Figma", "Premiere", "Spline"] },
+    { title: "Frameworks & Libraries", items: ["Vue", "React", "Electron", "Express", "Next.js", "Nest.js", "FastAPI", "Hono", "Framer Motion", "shadcn/ui", "Tailwind CSS"] },
+    { title: "Build Tools & Engineering", items: ["Vite", "Webpack", "Docker", "GitLab CI/CD"] },
+    { title: "Databases & Storage", items: ["MySQL", "MongoDB", "PostgreSQL", "Redis", "Supabase", "pgvector"] },
+    { title: "Agents & RAG", items: ["LangGraph", "Agent Loop", "Tool Calling", "Context Engineering", "RAG", "Embedding", "Rerank", "RAGAS", "SSE", "WebSocket"] },
+    { title: "Data & Growth", items: ["Event modeling", "Conversion funnels", "A/B Test", "Attribution", "ECharts"] },
+    { title: "Soft Skills", items: ["Team communication", "Collaboration"] },
   ],
 }
+
+export const selfEvaluation = [
+  { title: "Understand users", description: "Hands-on experience with ecommerce growth and AI website-building products. Turn user journeys and operational needs into deliverable features and workflows." },
+  { title: "Work with data", description: "Experience with event modeling, conversion funnels, A/B testing and RAG evaluation. Use consistent metric definitions, experiment results and business costs to assess product and model performance." },
+  { title: "Deliver end to end", description: "Full-stack development in Python and TypeScript, connecting agent orchestration, context management, tool execution, cloud sandboxes, data backends and live previews." },
+]
 
 export const experience = [
   { company: "Weiling Deep Technology", role: "Agent / Full-stack Engineer", location: "Hangzhou", date: "Dec 2025 — Present", details: [

@@ -12,12 +12,22 @@ export const profile = {
   portfolio: "https://minf97.github.io/motion-atlas/",
   summary: "具备 Agent 工程化、电商增长数据产品及全栈研发经验，关注 LLM 在真实业务场景中的可靠性与落地效率。",
   skills: [
-    { title: "Agent 工程化", items: "Agent Loop、Tool Calling、Handoff、Workflow、Context Engineering、会话持久化、上下文压缩、工具恢复、多模型适配" },
-    { title: "RAG 与评估", items: "文档解析、Embedding、向量检索、BM25、Rerank、上下文注入、RAGAS、人工标注集、bad case 回流" },
-    { title: "数据产品", items: "事件模型、用户行为分析、转化漏斗、A/B Test、转化归因、ECharts、Supabase、PostgreSQL、SQL" },
-    { title: "全栈工程", items: "Python、FastAPI、LangGraph、TypeScript、React、Next.js、Hono、Redis、SSE、Supabase" },
+    { title: "编程语言", items: ["JavaScript", "TypeScript", "Python"] },
+    { title: "设计工具", items: ["Figma", "Premiere", "Spline"] },
+    { title: "框架与库", items: ["Vue", "React", "Electron", "Express", "Next.js", "Nest.js", "FastAPI", "Hono", "Framer Motion", "shadcn/ui", "Tailwind CSS"] },
+    { title: "构建与工程化", items: ["Vite", "Webpack", "Docker", "GitLab CI/CD"] },
+    { title: "数据库与存储", items: ["MySQL", "MongoDB", "PostgreSQL", "Redis", "Supabase", "pgvector"] },
+    { title: "Agent 与 RAG", items: ["LangGraph", "Agent Loop", "Tool Calling", "Context Engineering", "RAG", "Embedding", "Rerank", "RAGAS", "SSE", "WebSocket"] },
+    { title: "数据与增长", items: ["事件建模", "转化漏斗", "A/B Test", "转化归因", "ECharts"] },
+    { title: "协作能力", items: ["Team communication", "Collaboration"] },
   ],
 }
+
+export const selfEvaluation = [
+  { title: "懂用户", description: "具备电商增长与 AI 建站产品实践，能从用户操作路径和运营需求出发，将业务问题拆解为可交付的功能与流程。" },
+  { title: "善数据", description: "具备事件建模、转化漏斗、A/B Test 与 RAG 效果评估经验，关注指标口径、实验结果及业务成本，用数据检验产品与模型效果。" },
+  { title: "能落地", description: "具备 Python / TypeScript 全栈研发能力，参与打通 Agent 编排、上下文管理、工具执行、云沙箱、数据后台与在线预览链路。" },
+]
 
 export const experience = [
   { company: "蔚灵深度科技有限公司", role: "Agent / 全栈工程师", location: "杭州", date: "2025.12 — 至今", details: [

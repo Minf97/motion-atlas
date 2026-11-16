@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site-header"
 
 // 中英共用排版
 export function ResumeView({ english = false }: { english?: boolean }) {
-  const { profile, experience, projects, personal, education } = english ? en : zh
+  const { profile, experience, projects, personal, education, selfEvaluation } = english ? en : zh
   return <main className="resume-page" lang={english ? "en" : "zh-CN"} id="top">
     <SiteHeader english={english} path="/resume" />
     <ResumePrint english={english} />
@@ -37,8 +37,17 @@ export function ResumeView({ english = false }: { english?: boolean }) {
       <section className="resume-section" aria-labelledby="projects-title"><h2 id="projects-title">{english ? "Projects" : "项目经历"}</h2>
         {projects.map(item => <article className="resume-entry" key={item.name}><div className="resume-entry-title"><h3 data-cursor="block" data-voice={item.details[0]}>{item.name}</h3><time data-cursor="block" data-voice={item.date}>{item.date}</time></div><p className="resume-role">{item.role}</p><details className="resume-details"><summary data-cursor="block" data-voice={english ? "A closer look at this project." : "展开查看项目的详细经历。"}>{english ? "Details" : "详情"}<ChevronDown aria-hidden="true" /></summary><ul>{item.details.map(detail => <li key={detail}>{detail}</li>)}</ul></details></article>)}
       </section>
-      <section className="resume-section resume-skills" aria-labelledby="skills-title"><h2 id="skills-title">{english ? "Skills" : "技术能力"}</h2>
-        {profile.skills.map(skill => <div className="resume-skill" key={skill.title}><h3>{skill.title}</h3><p>{skill.items}</p></div>)}
+      <section className="resume-section" aria-labelledby="evaluation-title">
+        <h2 id="evaluation-title">{english ? "Personal Strengths" : "个人评价"}</h2>
+        <ul className="resume-evaluation">
+          {selfEvaluation.map(item => <li key={item.title}><strong>{item.title}{english ? ": " : "："}</strong>{item.description}</li>)}
+        </ul>
+      </section>
+      <section className="resume-section resume-skills" aria-labelledby="skills-title"><h2 id="skills-title">{english ? "Skills" : "技能"}</h2>
+        {profile.skills.map((skill, index) => <section className="resume-skill-group" key={skill.title} aria-labelledby={`skill-group-${index}`}>
+          <h3 id={`skill-group-${index}`}>{skill.title}</h3>
+          <ul className="resume-skill-tags">{skill.items.map(item => <li key={item}>{item}</li>)}</ul>
+        </section>)}
       </section>
     </div>
     <footer className="portfolio-footer"><span>{profile.name} · {profile.role}</span><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer>
