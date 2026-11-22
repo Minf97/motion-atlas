@@ -10,6 +10,7 @@ export function SiteHeader({ english = false, path = "" }: { english?: boolean; 
       <PageTransitionLink href={home}>{english ? "Collections" : "合集"}</PageTransitionLink>
       {/* <PageTransitionLink href={`${english ? "/en" : ""}/spline`}>Spline</PageTransitionLink> */}
       <PageTransitionLink href={`${english ? "/en" : ""}/resume`}>{english ? "Resume" : "简历"}</PageTransitionLink>
+      <PageTransitionLink href={`${english ? "/en" : ""}/agent`}>Agent</PageTransitionLink>
       {/* <PageTransitionLink href={`${english ? "/en" : ""}/bilibili`}>{english ? "Live rank" : "同时在看"}</PageTransitionLink> */}
       <Link href={english ? path || "/" : `/en${path}`} hrefLang={english ? "zh-CN" : "en"} aria-label={english ? "切换到中文" : "Switch to English"}>{english ? "中文" : "EN"}</Link>
       <ThemeToggle english={english} />

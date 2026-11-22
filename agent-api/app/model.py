@@ -29,7 +29,9 @@ class ModelRouter:
         if not api_key:
             raise RuntimeError(f"{provider.upper()}_API_KEY is not configured")
         client = AsyncOpenAI(api_key=api_key, base_url=getattr(self.settings, f"{provider}_base_url"))
-        options = {"tools": TOOLS, "tool_choice": "auto"} if allow_tools else {}
+        # 仅暴露可用工具
+        available_tools = [tool for tool in TOOLS if tool["function"]["name"] != "web_search" or self.settings.tavily_api_key]
+        options = {"tools": available_tools, "tool_choice": "auto"} if allow_tools else {}
         response = await client.chat.completions.create(
             model=getattr(self.settings, f"{provider}_model"),
             temperature=0.2,

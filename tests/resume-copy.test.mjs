@@ -13,9 +13,18 @@ test("resume removes explanatory prompts while retaining product previews", () =
   assert.ok(preview.includes("resume-preview-viewport"))
 })
 
-test("public navigation hides Agent while preserving resume and language links", () => {
+test("public navigation shows Agent alongside resume and language links", () => {
   const header = readFileSync(new URL("../components/site-header.tsx", import.meta.url), "utf8")
-  assert.ok(!header.includes("/agent"))
+  assert.ok(header.includes("/agent"))
   assert.ok(header.includes("/resume"))
   assert.ok(header.includes("hrefLang"))
+})
+
+
+test("resume heading keeps the tea invitation without the role or summary", () => {
+  const view = readFileSync(new URL("../components/resume-view.tsx", import.meta.url), "utf8")
+  assert.ok(view.includes("也可以叫我 Minf，目前在杭州，欢迎找我喝茶聊天🍵"))
+  assert.ok(view.includes("let’s chat over tea 🍵"))
+  assert.ok(!view.includes("{profile.summary}"))
+  assert.ok(!view.includes("<p>{profile.role} · {profile.location}</p>"))
 })

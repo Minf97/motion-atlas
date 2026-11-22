@@ -15,8 +15,7 @@ export function ResumeView({ english = false }: { english?: boolean }) {
     <ResumePrint english={english} />
     <ResumeCursor />
     <div className="resume-content">
-      <div className="resume-heading"><h1 data-cursor="block" data-voice={english ? "You can call me Minf as well." : "也可以叫我 Minf。"}>{profile.name}</h1><p>{profile.role} · {profile.location}</p></div>
-      <p className="resume-summary">{profile.summary}</p>
+      <div className="resume-heading"><h1 data-cursor="block" data-voice={english ? "You can also call me Minf. I’m currently in Hangzhou—let’s chat over tea 🍵" : "也可以叫我 Minf，目前在杭州，欢迎找我喝茶聊天🍵"}>{profile.name}</h1></div>
       <div className="resume-links"><a data-cursor="a" data-voice={english ? "Send me an email. Let’s talk." : "可以发邮件联系我。"} href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight aria-hidden="true" /></a><a href={`tel:${profile.phone}`}>{english ? "Phone" : "电话"} <ArrowUpRight aria-hidden="true" /></a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" /></a><a href={profile.portfolio} target="_blank" rel="noopener noreferrer">{english ? "Portfolio" : "作品集"} <ArrowUpRight aria-hidden="true" /></a><a href={profile.blog} target="_blank" rel="noopener noreferrer">{english ? "Blog" : "技术博客"} <ArrowUpRight aria-hidden="true" /></a></div>
       <section className="resume-section" aria-labelledby="personal-title">
         <h2 id="personal-title">{english ? "Personal Information" : "个人信息"}</h2>
