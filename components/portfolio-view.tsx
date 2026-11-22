@@ -112,7 +112,7 @@ export function PortfolioView({ english = false }: { english?: boolean }) {
             <div className="portfolio-group">
               <h3><span>3D Works</span>{!english && <small>三维作品</small>}</h3>
               <div className="portfolio-case-list">
-                {splineWorks.map(work => <Link className="portfolio-case" href={`${english ? "/en" : ""}/spline`} key={work.id}>
+                {splineWorks.map(work => <Link className="portfolio-case" href={`${english ? "/en" : ""}/spline/${work.id}`} key={work.id}>
                   <span className="portfolio-case-number">{work.number}</span>
                   <span className="portfolio-case-title">{english ? work.titleEn : work.title}</span>
                   <span className="portfolio-case-description">{english ? "Made in Spline" : "使用 Spline 制作"}</span>

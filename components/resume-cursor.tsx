@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion"
 import { cursorGeometry, cursorSpring, type CursorMode } from "@/lib/resume-cursor"
+import { bindResumeSound } from "@/lib/resume-sound"
 
 // 复刻鼠标吸附
 export function ResumeCursor() {
@@ -19,6 +20,10 @@ export function ResumeCursor() {
 
   useEffect(() => {
     const page = document.querySelector<HTMLElement>(".resume-page")!
+    const audio = new Audio(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/audio/resume-hover.m4a`)
+    audio.preload = "auto"
+    audio.volume = 0.3
+    const unbindSound = bindResumeSound(page, audio, () => navigator.userActivation.hasBeenActive)
     const query = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)")
     let positioned = false
     const sync = () => {
@@ -91,6 +96,7 @@ export function ResumeCursor() {
     window.addEventListener("blur", leave)
     window.addEventListener("scroll", scroll, { passive: true })
     return () => {
+      unbindSound()
       reset(); page.classList.remove("resume-custom-cursor")
       query.removeEventListener("change", sync)
       document.removeEventListener("pointermove", move)

@@ -1,0 +1,60 @@
+import type { ResumeSkillGroup } from "./resume-skill-sources"
+import { frontendStack, aicoinCases, hotspotDetails } from "./resume-skills-aicoin.ts"
+import { backendStack, redisSkill } from "./resume-skills-backend.ts"
+
+// 按真实项目选词
+export const technicalSkills: ResumeSkillGroup[] = [
+  { id: "frontend", title: "前端", titleEn: "Frontend", items: [
+    ...frontendStack,
+    { id: "react-typescript", term: "React / TypeScript", meaning: { zh: "组件化前端开发", en: "Component-based frontend development" }, project: "AICoin", basis: "aicoin",
+      note: { zh: "我曾经确实困扰过，到底要不要学 React，因为实在不如 Vue 好用", en: "I did confused by Vue or React, when I was using Vue" },
+      experience: { zh: "参与 AICoin 官网与 React + Canvas K 线 SDK 开发，将行情展示和图表交互组织为可复用的前端能力。", en: "Worked on AICoin's website and React + Canvas chart SDK, organizing market views and chart interactions into reusable frontend capabilities." } },
+    { id: "canvas", term: "Canvas Rendering", meaning: { zh: "图表绘制与可视化", en: "Chart rendering and visualization" }, project: "AICoin", basis: "aicoin", source: "chart", preview: "chart",
+      experience: { zh: "参与基于 Canvas 的 K 线 SDK 建设，围绕实时行情和高频鼠标交互处理前端渲染性能瓶颈，并承担 KlineChart 的日常维护。", en: "Worked on a Canvas candlestick SDK, addressing rendering bottlenecks in live market data and frequent pointer interactions, alongside day-to-day KlineChart maintenance." },
+      details: [
+        { title: { zh: "双 Canvas 与渲染帧数调优", en: "Dual Canvas and frame-rate tuning" }, detail: { zh: "将行情主图与十字光标等交互内容分层绘制。鼠标移动时由 onMouseMove(...) 触发 redraw(\"OverlayCanvas\", false)，只重画覆盖层，减少整张图表的重复绘制，针对高频交互优化渲染帧数。", en: "Separated the market chart from interactions such as the crosshair. Pointer movement calls onMouseMove(...) and requests redraw(\"OverlayCanvas\", false), repainting only the overlay to avoid full-chart redraws and tune frame rate during frequent interaction." } },
+        { title: { zh: "KlineChart 日常维护", en: "Day-to-day KlineChart maintenance" }, detail: { zh: "日常维护使用 KlineChart 的 K 线图表，持续处理图表绘制、行情展示和交互问题，让性能优化与功能维护一起落到实际使用中。", en: "Maintained candlestick charts using KlineChart, handling rendering, market-data display and interaction issues as part of ongoing product work." } },
+      ] },
+    { id: "electron", term: "Electron", meaning: { zh: "跨平台桌面应用", en: "Cross-platform desktop applications" }, project: "AICoin", basis: "aicoin", source: "desktop", preview: "desktop", gallery: ["hotspots", "desktop-news", "desktop-chart"],
+      experience: { zh: "参与 AICoin Electron 客户端开发，负责热点排行榜与 AI 解读界面的图表、缓存、动效和多滚动区布局。后端爬取并清洗资讯，通过向量余弦相似度匹配币种相关内容，整理上下文交给 AI 生成看涨看跌、概况、解析与词云，再存入 Redis 复用；我负责将这些结果呈现为可交互的客户端界面。", en: "Contributed to AICoin's Electron client, building charts, caching, animations and multi-scroll layouts for hotspot rankings and AI analysis. The backend crawls and cleans news, matches coin-related content using vector cosine similarity, passes the assembled context to AI for bullish/bearish views, summaries, analysis and word clouds, then caches the results in Redis. My frontend work turns these results into an interactive desktop interface." },
+      details: hotspotDetails },
+    { id: "headless", term: "Headless Commerce", meaning: { zh: "前后端解耦的电商体验", en: "Decoupled ecommerce experiences" }, project: "Pacagen", basis: "pacagen", source: "commerce", preview: "commerce",
+      experience: { zh: "参与 Shopify Headless 官网，使用 Hydrogen、Remix、Storefront API 与 GraphQL 连接商品和购买流程，而不是只做静态品牌展示。", en: "Worked on a Shopify Headless storefront using Hydrogen, Remix, Storefront API and GraphQL to connect products with purchasing flows." } },
+    { id: "data-driven", term: "Data-driven Rendering", meaning: { zh: "数据驱动的列表渲染", en: "Data-driven list rendering" }, project: "AICoin", basis: "aicoin", source: "downloads", preview: "data-driven",
+      experience: { zh: "将下载说明的标题、步骤、配图组织为数组对象，以统一的组件进行列表渲染，再用布局控制横向排列。增加或调整步骤时修改数据即可，避免逐项复制界面代码，让结构更清楚、维护更直接。", en: "Organized download instructions as an array of objects containing headings, steps and images. A shared component renders the list in horizontal rows, so updating steps means editing data rather than duplicating interface markup." } },
+    ...aicoinCases,
+  ] },
+  { id: "backend", title: "后端", titleEn: "Backend", items: [
+    ...backendStack.slice(0, 4),
+    redisSkill,
+    ...backendStack.slice(4),
+    { id: "agent-orchestration", term: "Agent Orchestration", meaning: { zh: "多智能体任务编排", en: "Multi-agent task orchestration" }, project: "We0", basis: "we0", source: "agents", preview: "agents",
+      experience: { zh: "参与多 Agent 架构，把需求、设计、前后端开发和发布串成工作流；通过并发生成，将多页设计稿耗时从 8–12 分钟缩短至 1–4 分钟。", en: "Connected planning, design, development and publishing through multi-agent workflows; parallel generation reduced multi-page design time from 8–12 to 1–4 minutes." } },
+    { id: "context", term: "Context Engineering", meaning: { zh: "上下文组织与任务交接", en: "Context organization and handoff" }, project: "We0", basis: "we0", source: "agents", preview: "agents",
+      experience: { zh: "参与建站 Agent 的上下文管理和角色交接，让需求、设计结果、模板与代码产物贯穿同一条生成链路。", en: "Worked on context management and role handoffs so requirements, design outputs, templates and code stay connected throughout generation." } },
+    { id: "sse", term: "SSE / Real-time Events", meaning: { zh: "实时事件与状态同步", en: "Live events and state synchronization" }, project: "We0", basis: "we0", source: "agents", preview: "agents",
+      experience: { zh: "参与实时事件流、云沙箱和在线预览链路，让页面跟随生成过程更新；官网展示相应的多角色与预览流程，通信实现来自已有经历。", en: "Worked on live event streams, cloud sandboxes and previews so the UI follows generation progress. The public workflow shows the product context, not its transport internals." } },
+    { id: "rag", term: "RAG / Semantic Search", meaning: { zh: "检索增强与知识问答", en: "Retrieval-augmented knowledge answers" }, project: "Pacagen", basis: "pacagen", source: "pacagen", preview: "support",
+      experience: { zh: "建设客服 RAG Agent，覆盖知识问答、订单查询和转人工；官网可查看 FAQ 与客服入口，内部检索实现以已有项目记录为依据。", en: "Built a support RAG agent for knowledge questions, order lookups and human handoff. FAQs and chat are public; retrieval internals are backed by project records." } },
+    { id: "data-modeling", term: "API / Data Modeling", meaning: { zh: "数据模型与接口生成", en: "Data models and API generation" }, project: "We0", basis: "we0", source: "cms", preview: "cms",
+      experience: { zh: "参与全栈模板、数据后台和生成链路，把数据结构、CRUD 接口及前台预览连起来；对应 WE0-CMS 的数据维护场景。", en: "Connected full-stack templates, data backends and generation workflows across data structures, CRUD endpoints and frontend previews, matching WE0-CMS use cases." } },
+  ] },
+  { id: "ui", title: "UI", titleEn: "UI", items: [
+    { id: "framer-motion", term: "Framer Motion", project: "Motion Atlas", basis: "ui",
+      meaning: { zh: "前端动效库", en: "Frontend animation library" }, note: { zh: "前端的丝滑过渡动效库", en: "A frontend library for smooth transitions and animations." },
+      experience: { zh: "前端的丝滑过渡动效库", en: "A frontend library for smooth transitions and animations." } },
+    { id: "figma", term: "Figma", project: "Motion Atlas", basis: "ui",
+      meaning: { zh: "界面设计工具", en: "Interface design tool" }, note: { zh: "做设计稿的工具", en: "My tool for creating interface designs." },
+      experience: { zh: "做设计稿的工具", en: "My tool for creating interface designs." } },
+    { id: "surface-elevation", term: "Surface Elevation", meaning: { zh: "用明度建立界面层级", en: "Establishing depth through surface brightness" }, project: "AICoin", basis: "aicoin", source: "downloads", preview: "elevation",
+      experience: { zh: "在深色界面中，用背景最暗、弹窗稍亮、内部内容区再亮一层的明度关系，营造更靠近用户与光源的视觉感受。无需堆叠装饰，也能自然区分层次，让视线更容易聚焦、阅读更舒服。", en: "Used progressively lighter surfaces in a dark interface: the darkest backdrop, a brighter dialog and a lighter content area. This suggests elevation toward the viewer and light, clarifying hierarchy and guiding attention without decorative clutter." } },
+    { id: "design-to-code", term: "Design-to-Code", meaning: { zh: "从设计结果到可运行页面", en: "From design output to working pages" }, project: "We0", basis: "we0", source: "design", preview: "design",
+      experience: { zh: "参与设计画布与全栈生成链路，让设计结果能够进入页面实现与预览；官网设计还原页提供相应产品流程。", en: "Worked on the design canvas and full-stack generation path, carrying design outputs into implementation and previews; the design-to-code page shows the related product flow." } },
+    { id: "component-driven", term: "Component-driven Development", meaning: { zh: "组件体系与可复用界面", en: "Reusable component-based interfaces" }, project: "We0", basis: "we0", source: "cms", preview: "cms",
+      experience: { zh: "参与模板和数据后台建设，把内容维护等重复界面需求沉淀为可复用模块，支撑建站结果继续编辑和交付。", en: "Worked on templates and data backends, turning repeated content-management interface needs into reusable modules for editable, deliverable sites." } },
+    { id: "interaction-design", term: "Interaction Design", meaning: { zh: "交互反馈与操作体验", en: "Interaction feedback and usability" }, project: "AICoin", basis: "aicoin", source: "chart", preview: "chart",
+      experience: { zh: "参与 K 线 SDK 与实时行情界面开发，围绕图表操作和数据反馈实现交互；官网图表区域提供可查看的产品入口。", en: "Implemented chart operations and data feedback in AICoin's chart SDK and market interfaces; the public chart section provides a product entry point." } },
+    { id: "motion", term: "Spline", meaning: { zh: "动效与三维交互原型", en: "Motion and interactive 3D prototypes" }, project: "Motion Atlas", basis: "portfolio", source: "portfolio", preview: "portfolio",
+      experience: { zh: "在个人作品集中实现页面遮罩转场、主题切换和自定义光标，并制作、接入 3D Keyboard 与 3D Calculator 两个 Spline 作品。", en: "Implemented masked page transitions, theme changes and a custom cursor in this portfolio, and created and embedded the Spline works 3D Keyboard and 3D Calculator." } },
+  ] },
+]

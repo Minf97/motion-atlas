@@ -28,14 +28,13 @@ class SceneBoundary extends Component<
   }
 }
 
-export function SplineView({ english = false }: { english?: boolean }) {
-  const [activeId, setActiveId] = useState(splineWorks[0].id)
+export function SplineView({ english = false, workId = splineWorks[0].id }: { english?: boolean; workId?: string }) {
   const [loaded, setLoaded] = useState(false)
   const [revision, setRevision] = useState(0)
-  const work = splineWorks.find(item => item.id === activeId)!
+  const work = splineWorks.find(item => item.id === workId)!
 
   return <main className="portfolio-page spline-page" id="top" lang={english ? "en" : "zh-CN"}>
-    <SiteHeader english={english} path="/spline" />
+    <SiteHeader english={english} path={`/spline/${work.id}`} />
     <div className="spline-heading">
       <Link className="spline-back" href={english ? "/en/#spline" : "/#spline"}>
         <ArrowLeft aria-hidden="true" />{english ? "All collections" : "返回合集"}
@@ -58,11 +57,9 @@ export function SplineView({ english = false }: { english?: boolean }) {
     </section>
     <nav className="spline-index" aria-label={english ? "3D works" : "3D 作品目录"}>
       <span>{english ? "Works" : "作品目录"} / {String(splineWorks.length).padStart(2, "0")}</span>
-      {splineWorks.map(item => <button key={item.id} aria-current={activeId === item.id ? "true" : undefined} onClick={() => {
-        if (activeId === item.id) return
-        setLoaded(false)
-        setActiveId(item.id)
-      }}>{item.number} — {english ? item.titleEn : item.title}</button>)}
+      {splineWorks.map(item => <Link key={item.id} aria-current={work.id === item.id ? "page" : undefined} href={`${english ? "/en" : ""}/spline/${item.id}`}>
+        {item.number} — {english ? item.titleEn : item.title}
+      </Link>)}
     </nav>
     <footer className="portfolio-footer"><span>Minf · Spline works</span><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer>
   </main>

@@ -1,3 +1,5 @@
+import { resumeSkillGroups } from "./resume-skills.ts"
+
 export const personal = { birthday: "Dec 2000", mbti: "ESTP" }
 export const education = { school: "广东石油化工学院", date: "Sep 2019 — July 2023" }
 
@@ -11,16 +13,7 @@ export const profile = {
   blog: "https://blog.csdn.net/MinfCONS",
   portfolio: "https://minf97.github.io/motion-atlas/",
   summary: "具备 Agent 工程化、电商增长数据产品及全栈研发经验，关注 LLM 在真实业务场景中的可靠性与落地效率。",
-  skills: [
-    { title: "编程语言", items: ["JavaScript", "TypeScript", "Python"] },
-    { title: "设计工具", items: ["Figma", "Premiere", "Spline"] },
-    { title: "框架与库", items: ["Vue", "React", "Electron", "Express", "Next.js", "Nest.js", "FastAPI", "Hono", "Framer Motion", "shadcn/ui", "Tailwind CSS"] },
-    { title: "构建与工程化", items: ["Vite", "Webpack", "Docker", "GitLab CI/CD"] },
-    { title: "数据库与存储", items: ["MySQL", "MongoDB", "PostgreSQL", "Redis", "Supabase", "pgvector"] },
-    { title: "Agent 与 RAG", items: ["LangGraph", "Agent Loop", "Tool Calling", "Context Engineering", "RAG", "Embedding", "Rerank", "RAGAS", "SSE", "WebSocket"] },
-    { title: "数据与增长", items: ["事件建模", "转化漏斗", "A/B Test", "转化归因", "ECharts"] },
-    { title: "协作能力", items: ["Team communication", "Collaboration"] },
-  ],
+  skills: resumeSkillGroups,
 }
 
 export const selfEvaluation = [
@@ -30,22 +23,13 @@ export const selfEvaluation = [
 ]
 
 export const experience = [
-  { company: "蔚灵深度科技有限公司", role: "Agent / 全栈工程师", location: "杭州", date: "2025.12 — 至今", details: [
-    "参与 We0 多智能体 AI Coding 建站与增长平台建设，负责 Agent 架构、实时事件流、云沙箱和全栈模板体系；通过并发生成将多页面设计稿耗时从 8–12 分钟缩短至 1–4 分钟。",
-    "同时建设多渠道内容分发、账号池与 GEO 自动检测能力，连接产品生成、发布和增长链路。",
-  ] },
-  { company: "Pacagen — New York", role: "Software Engineer", location: "New York", date: "2024.10 — 2026.04", details: [
-    "负责 Pacagen 的 Growth Analytics、实验分析和 Shopify Headless 业务，从行为事件到转化归因建立统一数据入口，并通过内部化分析能力每月降低至少 1,000 美元 SaaS 成本。",
-    "建设 RAG 客服机器人和营销内容工作流，覆盖知识问答、订单查询与转人工；同时抽象邮件系统，减少每月约 3,700 美元工具支出。",
-  ] },
+  { company: "蔚灵深度科技有限公司", role: "Agent / 全栈工程师", date: "2025.12 — 至今" },
+  { company: "Pacagen — New York", role: "Software Engineer", date: "2025.05 — 2025.12" },
+  { company: "深圳用图科技有限公司", role: "前端 K 线工程师", date: "2024.02 — 2025.03" },
+  { company: "深圳四博智联科技有限公司", role: "前端工程师", date: "2022.10 — 2024.02" },
 ]
 
 export const projects = [
-  { name: "Insight Copilot", role: "经营数据 Agent · NL2SQL + 归因诊断", date: "Independent project", details: [
-    "基于 Shopify 订单与行为事件搭建 ODS、DWD、DWS、ADS 四层数仓，将 GMV、客单价、支付转化率、退款率和复购率等 18 项指标口径写入 YAML 语义层。",
-    "使用 Python 跑幂等 T+1 ETL，结合指标召回、SQL 白名单、只读账号、强制 LIMIT 和 5 秒超时，支持同比环比与渠道、品类、地区归因诊断。",
-    "用 60 条问句评测集统计执行准确率与结果一致率，并将失败样本按口径误解、多表关联错误和 Schema 歧义回流 few-shot 库。",
-  ] },
   { name: "We 校园", role: "微信小程序", date: "2020 — 至今", details: ["参与校园课表、成绩查询及校园社区产品研发，覆盖数十所高校；运营三年累计用户超过 30 万，日活超过 2 万，并建设 GitLab CI/CD、动态主题和小程序动态化引擎。"] },
   { name: "MurmRay", role: "Polymarket AI 机会分析", date: "XLayer Web3 黑客松", details: ["使用 WXT、React、TypeScript、Hono、OpenRouter、InsForge 与 Solidity，实现市场检索、AI 信号判断、链上登记和 active / expired / resolved 结果流转；获一等奖（2,000 USDT）。"] },
   { name: "Agora Space", role: "Multi-Agent 协作学习", date: "AdventureX 2025", details: ["基于 Kimi、Web Speech API、MiniMax TTS、A* 寻路、text-embedding-3-small、pgvector、Durable Objects 与 WebSocket，实现语音访谈、数字人格画像和多 Agent 实时协作；获 AdventureX 二等奖及 BUILD_QUES 新加坡站全球前十。"] },

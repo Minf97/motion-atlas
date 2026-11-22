@@ -1,0 +1,53 @@
+.resume-skill-tags .resume-skill-item { padding:0; background:transparent; }
+.resume-skill-trigger { display:block; border:1px solid transparent; border-radius:8px; padding:5px 13px; background:#f4f4f4; color:var(--ink); font:inherit; font-size:12px; font-weight:600; line-height:1.6; text-align:left; cursor:pointer; }
+.dark .resume-skill-trigger { background:#292b27; }
+.resume-skill-trigger:hover,.resume-skill-trigger[data-state="open"] { border-color:var(--muted); }
+.resume-skill-trigger:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+.resume-skill-card { z-index:60; width:min(480px,calc(100vw - 32px)); max-height:min(640px,var(--radix-popover-content-available-height)); overflow:auto; overscroll-behavior:contain; padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--paper); color:var(--ink); box-shadow:0 16px 48px rgb(0 0 0 / 12%); font-family:var(--font-portfolio-body),"PingFang SC",sans-serif; font-size:12px; line-height:1.8; transform-origin:var(--radix-popover-content-transform-origin); --enter-x:0px; --enter-y:0px; }
+.resume-skill-card[data-side="right"] { --enter-x:-12px; }
+.resume-skill-card[data-side="left"] { --enter-x:12px; }
+.resume-skill-card[data-side="top"] { --enter-y:12px; }
+.resume-skill-card[data-side="bottom"] { --enter-y:-12px; }
+.resume-skill-card[data-state="open"] { animation:resumeSkillReveal 240ms cubic-bezier(.16,1,.3,1) both; }
+.resume-skill-card[data-state="closed"] { animation:resumeSkillDismiss 120ms ease-in both; pointer-events:none; }
+@keyframes resumeSkillReveal { from { opacity:0; transform:translate(var(--enter-x),var(--enter-y)) scale(.88); filter:blur(3px); } to { opacity:1; transform:translate(0,0) scale(1); filter:blur(0); } }
+@keyframes resumeSkillDismiss { from { opacity:1; transform:scale(1); } to { opacity:0; transform:translate(var(--enter-x),var(--enter-y)) scale(.96); } }
+.resume-skill-card-top { display:flex; align-items:center; justify-content:space-between; gap:16px; color:var(--muted); font-size:11px; }
+.resume-skill-card-top button { display:grid; place-items:center; padding:4px; cursor:pointer; }
+.resume-skill-card-top svg { width:14px; height:14px; }
+.resume-skill-card h4 { margin:8px 0 0; font-size:16px; font-weight:600; line-height:1.4; }
+.resume-skill-card .resume-skill-meaning { margin:5px 0 14px; color:var(--muted); }
+.resume-skill-experience { margin:0; color:var(--body-text); }
+.resume-skill-source { margin-top:18px; padding-top:14px; border-top:1px solid var(--line); }
+.resume-skill-source-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:10px; }
+.resume-skill-source-heading>span { color:var(--muted); font-size:11px; }
+.resume-skill-source a { display:inline-flex; align-items:center; gap:5px; text-decoration:underline; text-underline-offset:4px; }
+.resume-skill-source svg { width:12px; height:12px; flex:none; }
+.resume-skill-preview { margin:0; }
+.resume-preview-viewport { --preview-height:185px; position:relative; display:grid; place-items:center; width:100%; height:var(--preview-height); overflow:hidden; border:1px solid var(--line); border-radius:8px; background:var(--background); cursor:zoom-in; }
+.resume-preview-shot { position:relative; display:block; width:100%; max-width:calc(var(--preview-height) * var(--preview-ratio)); aspect-ratio:var(--preview-ratio); transform-origin:var(--focus-x) var(--focus-y); transition:transform 260ms cubic-bezier(.16,1,.3,1); }
+.resume-preview-shot img { display:block; width:100%; height:auto; }
+.resume-preview-viewport[data-zoomed="true"] { cursor:zoom-out; }
+.resume-preview-viewport[data-zoomed="true"] .resume-preview-shot { transform:scale(1.9); }
+.resume-preview-marker { position:absolute; left:var(--focus-x); top:var(--focus-y); transform:translate(-50%,-50%); display:grid; place-items:center; width:25px; height:25px; border:2px solid #fff; border-radius:50%; background:#222320; color:#fff; font-size:9px; font-weight:600; box-shadow:0 0 0 5px rgb(255 255 255 / 25%); }
+.resume-preview-zoom { position:absolute; right:8px; bottom:8px; display:grid; place-items:center; width:26px; height:26px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink); }
+.resume-preview-zoom svg { width:13px; height:13px; }
+.resume-preview-viewport:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+.resume-skill-preview figcaption { display:flex; gap:10px; margin-top:14px; }
+.resume-skill-preview figcaption>span { flex:none; color:var(--muted); font-size:10px; font-variant-numeric:tabular-nums; padding-top:2px; }
+.resume-skill-preview figcaption strong { font-family:inherit; font-size:12px; font-weight:600; }
+.resume-skill-preview figcaption p { margin:4px 0 0; color:var(--body-text); }
+.resume-preview-details { display:grid; gap:16px; margin:18px 0 0; padding:0; list-style:none; }
+.resume-preview-details li { display:flex; gap:10px; }
+.resume-preview-details li>span { flex:none; color:var(--muted); font-size:10px; font-variant-numeric:tabular-nums; padding-top:2px; }
+.resume-preview-details strong { font-size:12px; font-weight:600; }
+.resume-preview-details p { margin:4px 0 0; color:var(--body-text); overflow-wrap:anywhere; }
+.resume-preview-gallery { display:flex; gap:8px; overflow-x:auto; margin-top:14px; padding:3px; }
+.resume-preview-gallery button { flex:1 0 100px; display:grid; justify-items:center; gap:6px; padding:8px; border:1px solid var(--line); border-radius:8px; color:var(--muted); font-size:10px; line-height:1.5; cursor:pointer; }
+.resume-preview-gallery button[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); }
+.resume-preview-gallery button:focus-visible { outline:2px solid var(--ink); outline-offset:1px; }
+.resume-preview-gallery img { display:block; width:88px; height:48px; object-fit:contain; }
+.resume-preview-provenance { margin:12px 0 0; font-size:10px; color:var(--muted); }
+@media(max-width:600px) { .resume-skill-card { padding:16px; }.resume-preview-viewport { --preview-height:160px; } }
+@media(prefers-reduced-motion:reduce) { .resume-skill-card[data-state] { animation:none; }.resume-preview-shot { transition:none; } }
+@media print { .resume-skill-card { display:none; }.resume-skill-trigger { background:transparent; border:1px solid #ddd; } }

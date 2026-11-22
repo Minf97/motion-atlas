@@ -133,9 +133,9 @@ a:focus-visible,summary:focus-visible { outline:2px solid #555; outline-offset:5
 .resume-evaluation li + li { margin-top:14px; }
 .resume-evaluation strong { color:var(--ink); font-weight:600; }
 .resume-skill-group + .resume-skill-group { margin-top:30px; }
-.resume-skill-group h3 { margin:0 0 14px; font-size:20px; font-weight:400; line-height:1.4; }
+.resume-skill-group h3 { margin:0 0 14px; font-size:16px; font-weight:400; line-height:1.4; }
 .resume-skill-tags { display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0; }
-.resume-skill-tags li { padding:5px 13px; border-radius:8px; background:#f4f4f4; color:var(--ink); font-size:14px; font-weight:600; line-height:1.6; }
+.resume-skill-tags li { padding:5px 13px; border-radius:8px; background:#f4f4f4; color:var(--ink); font-size:12px; font-weight:600; line-height:1.6; }
 .dark .resume-skill-tags li { background:#292b27; }
 @media print { .resume-skill-group { break-inside:avoid; }.resume-skill-tags li { background:transparent; border:1px solid #ddd; } }
 @media(max-width:600px) { .portfolio-header { flex-wrap:wrap; height:auto; min-height:90px; padding:14px 0; }.portfolio-header nav { width:100%; justify-content:space-between; gap:8px; font-size:12px; } }

@@ -1,9 +1,10 @@
-import Link from "next/link"
 import { ArrowUpRight, ChevronDown } from "lucide-react"
 import * as zh from "@/lib/resume"
 import * as en from "@/lib/resume-en"
 import { ResumeCursor } from "@/components/resume-cursor"
 import { ResumePrint } from "@/components/resume-print"
+import { ResumeSkills } from "@/components/resume-skills"
+import "@/app/resume/skills.css"
 import { SiteHeader } from "@/components/site-header"
 
 // 中英共用排版
@@ -25,7 +26,7 @@ export function ResumeView({ english = false }: { english?: boolean }) {
         </dl>
       </section>
       <section className="resume-section" aria-labelledby="experience-title"><h2 id="experience-title" data-cursor="block" data-voice={english ? "Frontend interfaces, interactions, and AI agents." : "我的工作围绕前端界面、交互和 AI Agent 展开。"}>{english ? "Work Experience" : "工作经历"}</h2>
-        {experience.map(item => <article className="resume-entry" key={item.company}><div className="resume-entry-title"><h3 data-cursor="block" data-voice={item.details[0]}>{item.company}</h3><time data-cursor="block" data-voice={item.date}>{item.date}</time></div><p className="resume-role">{item.role} · {item.location}</p><ul>{item.details.map(detail => <li key={detail}>{detail}</li>)}</ul></article>)}
+        {experience.map(item => <article className="resume-entry" key={item.company}><div className="resume-entry-title"><h3 data-cursor="block">{item.company}</h3><time data-cursor="block" data-voice={item.date}>{item.date}</time></div><p className="resume-role">{item.role}</p></article>)}
       </section>
       <section className="resume-section" aria-labelledby="education-title">
         <h2 id="education-title" data-cursor="block" data-voice={english ? "Education never really stops, right?" : "学习不会在毕业时结束。"}>{english ? "Education" : "教育经历"}</h2>
@@ -43,13 +44,8 @@ export function ResumeView({ english = false }: { english?: boolean }) {
           {selfEvaluation.map(item => <li key={item.title}><strong>{item.title}{english ? ": " : "："}</strong>{item.description}</li>)}
         </ul>
       </section>
-      <section className="resume-section resume-skills" aria-labelledby="skills-title"><h2 id="skills-title">{english ? "Skills" : "技能"}</h2>
-        {profile.skills.map((skill, index) => <section className="resume-skill-group" key={skill.title} aria-labelledby={`skill-group-${index}`}>
-          <h3 id={`skill-group-${index}`}>{skill.title}</h3>
-          <ul className="resume-skill-tags">{skill.items.map(item => <li key={item}>{item}</li>)}</ul>
-        </section>)}
-      </section>
+      <ResumeSkills groups={profile.skills} english={english} />
     </div>
-    <footer className="portfolio-footer"><span>{profile.name} · {profile.role}</span><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer>
+    {/* <footer className="portfolio-footer"><span>{profile.name} · {profile.role}</span><a href="#top">{english ? "Back to top ↑" : "返回顶部 ↑"}</a></footer> */}
   </main>
 }

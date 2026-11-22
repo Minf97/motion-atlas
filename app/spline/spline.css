@@ -18,7 +18,7 @@
 .spline-status button { text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
 .spline-index { display:flex; align-items:baseline; flex-wrap:wrap; gap:20px 32px; padding:26px 0 56px; font-size:12px; }
 .spline-index>span { color:var(--muted); }
-.spline-index button { padding:6px 0; cursor:pointer; color:var(--muted); }
-.spline-index button[aria-current="true"] { color:var(--ink); border-bottom:1px solid var(--ink); }
+.spline-index a { padding:6px 0; color:var(--muted); }
+.spline-index a[aria-current="page"] { color:var(--ink); border-bottom:1px solid var(--ink); }
 .spline-toolbar button:hover,.spline-back:hover { color:var(--ink); }
 @media(max-width:600px) { .spline-title { align-items:flex-start; flex-direction:column; gap:16px; padding-top:28px; }.spline-heading { padding-bottom:28px; }.spline-stage { height:62svh; min-height:360px; } }
